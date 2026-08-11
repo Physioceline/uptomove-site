@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Josefin_Slab, Nunito } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
-
-const josefinSlab = Josefin_Slab({
-  variable: "--font-josefin",
-  subsets: ["latin"],
-  weight: ["700"],
-  display: "swap",
-});
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -68,10 +61,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="fr"
-      className={`${josefinSlab.variable} ${nunito.variable}`}
-    >
+    <html lang="fr" className={nunito.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Encode+Sans+Compressed:wght@700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         {children}
       </body>

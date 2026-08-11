@@ -19,7 +19,7 @@
   --color-teal-light: #b8efe9;
   --color-cream: #f4f2ee;
 
-  --font-heading: var(--font-josefin), "Josefin Slab", serif;
+  --font-heading: "Encode Sans Compressed", sans-serif;
   --font-body: var(--font-nunito), "Nunito", sans-serif;
 
   --shadow-card: 0 4px 24px -4px rgba(30, 41, 82, 0.10);
