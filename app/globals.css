@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-navy: #1E2952;
+  --color-navy-900: #111830;
+  --color-navy-800: #1E2952;
+  --color-navy-700: #2a3a6e;
+  --color-navy-600: #3a4e8a;
+  --color-navy-100: #e8eaf2;
+  --color-navy-50: #f0f1f8;
+  --color-yellow: #FFDE59;
+  --color-yellow-dark: #f0c800;
+  --color-yellow-light: #fff4b0;
+  --color-orange: #FF914D;
+  --color-orange-dark: #e67a34;
+  --color-orange-light: #ffd5bc;
+  --color-teal: #2EC4B6;
+  --color-teal-dark: #1fa99d;
+  --color-teal-light: #b8efe9;
+  --color-cream: #f4f2ee;
+
+  --font-heading: var(--font-josefin), "Josefin Slab", serif;
+  --font-body: var(--font-nunito), "Nunito", sans-serif;
+
+  --shadow-card: 0 4px 24px -4px rgba(30, 41, 82, 0.10);
+  --shadow-card-hover: 0 12px 40px -8px rgba(30, 41, 82, 0.18);
+  --shadow-glow: 0 0 30px rgba(255, 222, 89, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: #1E2952;
+  background: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 2px solid #FF914D;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: #FFDE59;
+  color: #1E2952;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f2ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E2952;
+  border-radius: 3px;
+}
+
+/* Utils */
+.gradient-text {
+  background: linear-gradient(135deg, #FF914D 0%, #FFDE59 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-teal {
+  background: linear-gradient(135deg, #2EC4B6 0%, #1fa99d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
