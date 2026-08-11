@@ -155,8 +155,21 @@ export default function FormationsManutentionPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="bg-[#1E2952] pt-[100px] pb-16 md:pb-24" aria-labelledby="manut-title">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+        <section
+          className="relative bg-[#1E2952] pt-[100px] pb-16 md:pb-24 overflow-hidden"
+          aria-labelledby="manut-title"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/download-web.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 z-[1] bg-navy/70" aria-hidden="true" />
+          <div className="relative z-[2] max-w-[1200px] mx-auto px-5 md:px-8">
             <Badge variant="orange" className="mb-5">Formations Manutention</Badge>
             <h1
               id="manut-title"
@@ -167,7 +180,7 @@ export default function FormationsManutentionPage() {
             <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
               Les métiers de la manutention sollicitent fortement le corps au quotidien : gestes
               répétitifs, ports de charges, postures contraignantes. Nos formations accompagnent
-              les salariés dans l'apprentissage des bons gestes pour préserver leur santé.
+              les salariés dans l&apos;apprentissage des bons gestes pour préserver leur santé.
             </p>
             <div className="flex flex-wrap gap-5 text-white/60 text-sm">
               <span className="flex items-center gap-2"><Clock size={15} /> Formats 30 min à 1h</span>

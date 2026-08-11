@@ -26,7 +26,7 @@ export default function AProposPage() {
               Des kinésithérapeutes au service de la prévention en entreprise.
             </h1>
             <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-              UP TO MOVE est née d'un constat simple : la santé au travail mérite
+              UP TO MOVE est née d&apos;un constat simple : la santé au travail mérite
               des professionnels de santé réels, pas des formations génériques.
             </p>
           </div>

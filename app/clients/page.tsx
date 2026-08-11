@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { CaseStudyTabs } from "@/components/CaseStudyTabs";
+import { Factory, Monitor, SquarePlus, Truck, ShoppingCart, Utensils } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Nos Clients — Ils nous font confiance",
@@ -15,29 +16,77 @@ export const metadata: Metadata = {
 };
 
 const sectors = [
-  { icon: "🏭", name: "Industrie & Manutention", examples: "Logistique, agroalimentaire, automobile, packaging", href: "/formations/manutention" },
-  { icon: "🖥️", name: "Bureaux & Services", examples: "Banques, assurances, conseil, IT, administration", href: "/formations/sedentaires" },
-  { icon: "🏥", name: "Santé & Aide à la personne", examples: "Cliniques, EHPAD, aide à domicile, laboratoires", href: "/formations/manutention" },
-  { icon: "🏗️", name: "BTP & Transport", examples: "Construction, travaux publics, transport routier", href: "/formations/manutention" },
-  { icon: "🛒", name: "Commerce & Distribution", examples: "Grande distribution, retail, e-commerce", href: "/formations/manutention" },
-  { icon: "🍽️", name: "Hôtellerie & Restauration", examples: "Hôtels, restaurants, traiteurs, collectivités", href: "/formations/manutention" },
+  {
+    icon: Factory,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
+    name: "Industrie & Manutention",
+    examples: "Logistique, agroalimentaire, automobile, packaging",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Monitor,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
+    name: "Bureaux & Services",
+    examples: "Banques, assurances, conseil, IT, administration",
+    href: "/formations/sedentaires",
+  },
+  {
+    icon: SquarePlus,
+    iconBg: "bg-navy/10",
+    iconColor: "text-navy",
+    name: "Santé & Aide à la personne",
+    examples: "Cliniques, EHPAD, aide à domicile, laboratoires",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Truck,
+    iconBg: "bg-yellow/15",
+    iconColor: "text-navy",
+    name: "BTP & Transport",
+    examples: "Construction, travaux publics, transport routier",
+    href: "/formations/manutention",
+  },
+  {
+    icon: ShoppingCart,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
+    name: "Commerce & Distribution",
+    examples: "Grande distribution, retail, e-commerce",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Utensils,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
+    name: "Hôtellerie & Restauration",
+    examples: "Hôtels, restaurants, traiteurs, collectivités",
+    href: "/formations/manutention",
+  },
 ];
 
 const testimonials = [
   {
     text: "La formation a été très concrète et adaptée à nos postes de travail. Nos opérateurs ont apprécié l'intervention directe sur leurs gestes réels. Les douleurs déclarées ont nettement diminué dans le mois suivant.",
+    name: "Julien M.",
     role: "Responsable HSE",
     sector: "Industrie",
+    icon: Factory,
   },
   {
     text: "En tant que DRH, je cherchais une solution qui s'intègre dans notre DUERP et qui soit finançable OPCO. UP TO MOVE a répondu à ces deux exigences tout en proposant une qualité pédagogique bien au-dessus de ce que nous avions eu jusque-là.",
+    name: "Camille R.",
     role: "DRH",
     sector: "Services",
+    icon: Monitor,
   },
   {
     text: "Le fait que les formateurs soient kinésithérapeutes fait toute la différence. Ils ont su adapter leurs recommandations aux pathologies existantes de certains de nos salariés. Très professionnel.",
+    name: "Dr Sophie L.",
     role: "Médecin du travail",
     sector: "Santé",
+    icon: SquarePlus,
   },
 ];
 
@@ -46,8 +95,21 @@ export default function ClientsPage() {
     <>
       <Navbar />
       <main>
-        <section className="bg-[#1E2952] pt-[100px] pb-16" aria-labelledby="clients-title">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+        <section
+          className="relative bg-[#1E2952] pt-[100px] pb-16 overflow-hidden"
+          aria-labelledby="clients-title"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/video-nos-clients.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 z-[1] bg-navy/70" aria-hidden="true" />
+          <div className="relative z-[2] max-w-[1200px] mx-auto px-5 md:px-8">
             <Badge variant="teal" className="mb-4">Nos clients</Badge>
             <h1
               id="clients-title"
@@ -304,7 +366,11 @@ export default function ClientsPage() {
               {sectors.map((s) => (
                 <Link key={s.name} href={s.href} className="block">
                   <Card hover className="p-5 flex gap-4 h-full cursor-pointer">
-                    <span className="text-3xl shrink-0">{s.icon}</span>
+                    <div
+                      className={`w-11 h-11 rounded-[10px] ${s.iconBg} ${s.iconColor} flex items-center justify-center shrink-0`}
+                    >
+                      <s.icon size={20} aria-hidden="true" />
+                    </div>
                     <div>
                       <h3 className="font-semibold text-navy mb-1">{s.name}</h3>
                       <p className="text-navy/55 text-xs leading-relaxed">{s.examples}</p>
@@ -326,14 +392,19 @@ export default function ClientsPage() {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((t, i) => (
-                <Card key={i} hover className="p-6 flex flex-col">
-                  <blockquote className="text-navy/70 text-sm leading-relaxed flex-1 italic mb-5">
+              {testimonials.map((t) => (
+                <Card key={t.name} hover className="p-6 pt-8 flex flex-col relative overflow-visible">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-[11px] bg-white border border-navy-100 shadow-[0_4px_10px_rgba(30,41,82,0.08)] text-teal-dark flex items-center justify-center">
+                    <t.icon size={18} aria-hidden="true" />
+                  </div>
+                  <blockquote className="text-navy/70 text-sm leading-relaxed flex-1 italic mb-5 text-center">
                     &ldquo;{t.text}&rdquo;
                   </blockquote>
-                  <footer className="border-t border-navy-100 pt-4">
-                    <p className="text-navy font-semibold text-sm">{t.role}</p>
-                    <p className="text-navy/50 text-xs">{t.sector}</p>
+                  <footer className="border-t border-navy-100 pt-4 text-center">
+                    <p className="text-navy font-semibold text-sm">{t.name}</p>
+                    <p className="text-navy/50 text-xs">
+                      {t.role} · Secteur {t.sector}
+                    </p>
                   </footer>
                 </Card>
               ))}
@@ -342,17 +413,43 @@ export default function ClientsPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-gradient-to-r from-navy to-navy-700 py-16 md:py-20" aria-labelledby="cta-clients-title">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8 text-center">
-            <h2 id="cta-clients-title" className="font-heading text-white text-2xl md:text-3xl mb-4">
+        <section
+          className="relative py-16 md:py-20 overflow-hidden"
+          aria-labelledby="cta-clients-title"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/video-devis-clients.mp4" type="video/mp4" />
+          </video>
+          <div
+            className="absolute inset-0 z-[1] bg-gradient-to-r from-orange/[.82] to-yellow/[.82]"
+            aria-hidden="true"
+          />
+          <div className="relative z-[2] max-w-[1200px] mx-auto px-5 md:px-8 text-center">
+            <h2 id="cta-clients-title" className="font-heading text-navy text-2xl md:text-3xl mb-4">
               Rejoignez nos clients
             </h2>
-            <p className="text-white/65 max-w-md mx-auto mb-8">
+            <p className="text-navy/75 max-w-md mx-auto mb-8">
               Devis personnalisé gratuit sous 48h. Intervention possible partout en France.
             </p>
-            <Button href="/contact" variant="secondary" size="lg">
-              Demander un devis →
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="lg"
+                className="bg-navy text-white hover:bg-navy-700"
+              >
+                Demander un devis →
+              </Button>
+              <Button href="/formations/sedentaires" variant="white" size="lg">
+                Voir nos formations
+              </Button>
+            </div>
           </div>
         </section>
       </main>

@@ -8,16 +8,24 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import {
-  CheckCircle2,
   ArrowRight,
   Phone,
-  Clock,
-  Users,
   MapPin,
   Award,
   TrendingDown,
-  Shield,
+  TrendingUp,
   Zap,
+  Clipboard,
+  Smartphone,
+  Stethoscope,
+  Scale,
+  Factory,
+  Monitor,
+  Truck,
+  IdCard,
+  SquarePlus,
+  ShoppingCart,
+  Utensils,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -51,22 +59,30 @@ const stats = [
 
 const differentiators = [
   {
-    icon: "🩺",
+    icon: Stethoscope,
+    iconBg: "bg-teal",
+    iconColor: "text-white",
     title: "Expertise clinique réelle",
     text: "Nos formateurs sont kinésithérapeutes diplômés d'État. Ils connaissent l'anatomie, les pathologies et les mécanismes des TMS.",
   },
   {
-    icon: "🏢",
+    icon: Smartphone,
+    iconBg: "bg-yellow",
+    iconColor: "text-navy",
     title: "Intervention sur le poste réel",
     text: "Nous venons dans vos locaux analyser les vrais gestes et les vraies contraintes — bureau, entrepôt, terrain, soin.",
   },
   {
-    icon: "⚡",
+    icon: Zap,
+    iconBg: "bg-orange",
+    iconColor: "text-white",
     title: "1 heure. Résultats mesurables.",
     text: "Nos formations durent 1h maximum, sans coupure de productivité. Effets documentés : −30% de douleurs déclarées dès la 1ère session.",
   },
   {
-    icon: "📋",
+    icon: Clipboard,
+    iconBg: "bg-navy",
+    iconColor: "text-white",
     title: "Conformité réglementaire incluse",
     text: "Certifiés Qualiopi, nos formations s'inscrivent dans votre obligation légale (Art. L.4121-1) et alimentent votre DUERP.",
   },
@@ -78,67 +94,133 @@ const steps = [
     icon: Phone,
     title: "Échange de découverte",
     text: "Premier contact pour comprendre vos enjeux, sans engagement.",
+    iconBg: "bg-teal",
+    iconColor: "text-white",
+    numColor: "text-teal",
   },
   {
     num: "02",
-    icon: Shield,
+    icon: Clipboard,
     title: "Diagnostic & programme",
     text: "Analyse de vos besoins, choix des formations adaptées, devis personnalisé.",
+    iconBg: "bg-orange",
+    iconColor: "text-white",
+    numColor: "text-orange",
   },
   {
     num: "03",
-    icon: Users,
+    icon: Smartphone,
     title: "Intervention dans vos locaux",
     text: "Formation animée par un kinésithérapeute, 1h, sur site ou à distance.",
+    iconBg: "bg-white",
+    iconColor: "text-navy",
+    numColor: "text-white",
   },
   {
     num: "04",
-    icon: Award,
+    icon: IdCard,
     title: "Certificat & suivi",
     text: "Délivrance du certificat Passeport Prévention et bilan post-formation.",
+    iconBg: "bg-yellow",
+    iconColor: "text-navy",
+    numColor: "text-yellow",
   },
 ];
 
 const situations = [
   {
-    icon: "🏭",
+    icon: Factory,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
     title: "Douleurs au dos ou aux épaules",
     text: "Nous intervenons directement sur site pour former vos équipes aux économies gestuelles en 1h.",
   },
   {
-    icon: "📈",
+    icon: TrendingUp,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
     title: "Absentéisme qui augmente",
     text: "Nous vous aidons à identifier les facteurs de risque et à mettre en place une démarche de prévention concrète.",
   },
   {
-    icon: "⚖️",
+    icon: Scale,
+    iconBg: "bg-navy/10",
+    iconColor: "text-navy",
     title: "Obligation légale de prévention",
     text: "Nos formations Qualiopi s'inscrivent dans votre obligation employeur (Art. L.4121-1) et alimentent votre DUERP.",
   },
   {
-    icon: "🖥️",
+    icon: Monitor,
+    iconBg: "bg-yellow/15",
+    iconColor: "text-navy",
     title: "Équipes sur écran toute la journée",
     text: "Nous proposons des ateliers spécifiques postes sédentaires — cervicales, poignets, fatigue visuelle.",
   },
   {
-    icon: "🏗️",
+    icon: Truck,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
     title: "Opérateurs portant des charges",
     text: "Nos formations manutention enseignent les techniques d'économie d'effort et de protection articulaire.",
   },
   {
-    icon: "🪪",
+    icon: IdCard,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
     title: "Conformité Passeport Prévention",
     text: "UP TO MOVE délivre un certificat intégrable directement dans le Passeport Prévention de chaque salarié.",
   },
 ];
 
 const sectors = [
-  { icon: "🏭", title: "Industrie & Manutention", desc: "Gestes répétitifs, port de charges, postures contraignantes", href: "/formations/manutention" },
-  { icon: "🖥️", title: "Bureaux & Travail de bureau", desc: "Station assise prolongée, travail sur écran, fatigue cervicale", href: "/formations/sedentaires" },
-  { icon: "🏥", title: "Santé & Aide à la personne", desc: "Transferts sécurisés, gestes métier pour soignants", href: "/formations/manutention" },
-  { icon: "🏗️", title: "BTP & Transport", desc: "Travail physique intensif, vibrations, postures extrêmes", href: "/formations/manutention" },
-  { icon: "🛒", title: "Commerce & Distribution", desc: "Station debout prolongée, mise en rayon, caisse", href: "/formations/manutention" },
-  { icon: "🍽️", title: "Hôtellerie & Restauration", desc: "Port de plateaux, service en salle, ménage intensif", href: "/formations/manutention" },
+  {
+    icon: Factory,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
+    title: "Industrie & Manutention",
+    desc: "Gestes répétitifs, port de charges, postures contraignantes",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Monitor,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
+    title: "Bureaux & Travail de bureau",
+    desc: "Station assise prolongée, travail sur écran, fatigue cervicale",
+    href: "/formations/sedentaires",
+  },
+  {
+    icon: SquarePlus,
+    iconBg: "bg-navy/10",
+    iconColor: "text-navy",
+    title: "Santé & Aide à la personne",
+    desc: "Transferts sécurisés, gestes métier pour soignants",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Truck,
+    iconBg: "bg-yellow/15",
+    iconColor: "text-navy",
+    title: "BTP & Transport",
+    desc: "Travail physique intensif, vibrations, postures extrêmes",
+    href: "/formations/manutention",
+  },
+  {
+    icon: ShoppingCart,
+    iconBg: "bg-orange/10",
+    iconColor: "text-orange",
+    title: "Commerce & Distribution",
+    desc: "Station debout prolongée, mise en rayon, caisse",
+    href: "/formations/manutention",
+  },
+  {
+    icon: Utensils,
+    iconBg: "bg-teal/10",
+    iconColor: "text-teal",
+    title: "Hôtellerie & Restauration",
+    desc: "Port de plateaux, service en salle, ménage intensif",
+    href: "/formations/manutention",
+  },
 ];
 
 const errors = [
@@ -325,72 +407,161 @@ export default function HomePage() {
 
         {/* ══ SOLUTION ════════════════════════════════════════ */}
         <section
-          className="bg-white py-[clamp(4rem,8vw,7rem)]"
+          className="bg-white py-[clamp(4rem,8vw,7rem)] px-5 md:px-16"
           aria-labelledby="solution-title"
         >
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <div>
-                <Badge variant="teal" className="mb-4">La solution UP TO MOVE</Badge>
-                <h2
-                  id="solution-title"
-                  className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] text-navy leading-tight tracking-tight mb-5"
-                >
-                  L&apos;expertise de kinésithérapeutes au service des
-                  entreprises.
-                </h2>
-                <p className="text-navy/65 leading-relaxed mb-8">
-                  Chez UP TO MOVE, nous mettons nos compétences de
-                  kinésithérapeutes et consultants en ergonomie au service des
-                  entreprises — bureau ou manutention, nous adaptons chaque
-                  intervention à vos conditions réelles de travail.
-                </p>
-                <div className="space-y-4">
-                  {[
+          <div className="max-w-[960px] mx-auto">
+            <div className="text-center mb-16">
+              <Badge variant="teal" className="mb-6">La solution UP TO MOVE</Badge>
+              <h2
+                id="solution-title"
+                className="font-heading text-navy text-[clamp(1.75rem,3.5vw,2.125rem)] font-extrabold tracking-tight mb-4"
+              >
+                L&apos;expertise de kinésithérapeutes
+                <br className="hidden md:block" /> au service des{" "}
+                <em className="not-italic text-teal">entreprises.</em>
+              </h2>
+              <p className="text-[15px] text-navy/55 leading-relaxed max-w-[620px] mx-auto font-light">
+                Chez <strong className="text-teal font-bold">UP TO MOVE</strong>, nous
+                mettons{" "}
+                <strong className="text-navy font-bold">
+                  nos compétences de kinésithérapeutes et de consultants en ergonomie
+                </strong>{" "}
+                au service des entreprises — bureau ou manutention, nous adaptons
+                chaque intervention à vos conditions réelles.
+              </p>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+              <div
+                className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-teal -translate-x-1/2"
+                aria-hidden="true"
+              />
+
+              {[
+                {
+                  badge: "1. Notre approche",
+                  badgeColor: "bg-teal/10 text-teal border-teal/30",
+                  dotColor: "border-teal",
+                  title: (
+                    <>
+                      Des formations courtes,
+                      <br />
+                      concrètes et participatives
+                    </>
+                  ),
+                  items: [
                     "Formations de 1h maximum",
                     "Animées par des kinésithérapeutes diplômés d'État",
                     "En présentiel dans vos locaux ou à distance",
-                    "Certifiées Qualiopi — alimentent votre DUERP",
-                    "Certificat Passeport Prévention inclus",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <CheckCircle2
-                        className="text-teal shrink-0 mt-0.5"
-                        size={18}
-                      />
-                      <span className="text-navy text-sm font-medium">{item}</span>
-                    </div>
-                  ))}
+                    "Complémentaires et modulables selon vos besoins",
+                    "Méthodologie participative — 50% pratique",
+                  ],
+                  side: "left",
+                },
+                {
+                  badge: "2. Ce que vos équipes apprennent",
+                  badgeColor: "bg-orange/10 text-orange border-orange/30",
+                  dotColor: "border-orange",
+                  title: (
+                    <>
+                      Protéger son corps,
+                      <br />
+                      optimiser ses gestes
+                    </>
+                  ),
+                  items: [
+                    "Protéger tout son corps et réduire la fatigue physique",
+                    "Économies de postures et gestes adaptés à chaque poste",
+                    "Limiter les accidents du travail et prévenir les maladies professionnelles",
+                    "Améliorer le bien-être et réduire la pénibilité",
+                  ],
+                  side: "right",
+                },
+                {
+                  badge: "3. Ateliers pratiques",
+                  badgeColor: "bg-navy/10 text-navy border-navy/20",
+                  dotColor: "border-navy",
+                  title: (
+                    <>
+                      Des outils pédagogiques
+                      <br />
+                      pour ancrer les bons réflexes
+                    </>
+                  ),
+                  items: [
+                    "Modules théoriques ciblés sur votre secteur",
+                    "Ateliers pratiques adaptés au poste réel",
+                    "Outils pédagogiques ludiques pour ancrer les bonnes pratiques",
+                    "Bureau ou manutention — chaque intervention est sur mesure",
+                  ],
+                  side: "left",
+                },
+              ].map((step) => (
+                <div
+                  key={step.badge}
+                  className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[180px] relative py-6 lg:py-0"
+                >
+                  <div
+                    className={
+                      step.side === "left"
+                        ? "lg:pr-14 lg:py-8 flex flex-col justify-center lg:col-start-1"
+                        : "lg:pl-14 lg:py-8 flex flex-col justify-center lg:col-start-2"
+                    }
+                  >
+                    <span
+                      className={`inline-flex items-center text-[11px] font-semibold px-3 py-1 rounded-full mb-3.5 w-fit border ${step.badgeColor}`}
+                    >
+                      {step.badge}
+                    </span>
+                    <h3 className="font-heading text-navy font-extrabold text-lg mb-2.5 leading-snug">
+                      {step.title}
+                    </h3>
+                    <ul className="list-none m-0 p-0 flex flex-col gap-1.5">
+                      {step.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-[15px] text-navy/55"
+                        >
+                          <span className="w-[5px] h-[5px] rounded-full bg-orange shrink-0 mt-2" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div
+                    className={`hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-[3px] z-10 ${step.dotColor}`}
+                    aria-hidden="true"
+                  />
                 </div>
-                <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <Button href="/formations/sedentaires" variant="primary" size="md">
-                    Formations Sédentaires
-                  </Button>
-                  <Button href="/formations/manutention" variant="outline" size="md">
-                    Formations Manutention
-                  </Button>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              {/* Result highlight */}
-              <div className="relative">
-                <div className="bg-gradient-to-br from-navy to-navy-700 rounded-[1.5rem] p-10 text-white text-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-orange/20 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal/20 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true" />
-                  <span className="font-heading text-[5rem] font-bold text-yellow leading-none block">
-                    −30%
-                  </span>
-                  <p className="text-white/85 text-base mt-4 leading-relaxed max-w-xs mx-auto">
-                    1h de formation peut réduire de{" "}
-                    <strong>30% les douleurs déclarées</strong> par les
-                    salariés.
-                  </p>
-                  <p className="text-white/40 text-xs mt-4">
-                    Démarche concrète, sans coupure de productivité,
-                    <br />
-                    partout en France.
-                  </p>
-                </div>
+            {/* Stat finale */}
+            <div className="mt-12 relative overflow-hidden bg-gradient-to-br from-navy to-navy-700 rounded-2xl px-6 md:px-10 py-8 flex flex-col md:flex-row items-center gap-5 md:gap-7 shadow-[0_20px_48px_rgba(30,41,82,0.25)] text-center md:text-left">
+              <div
+                className="absolute -top-[70px] -right-10 w-[220px] h-[220px] rounded-full bg-teal opacity-10 pointer-events-none"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute -bottom-[60px] right-[120px] w-[140px] h-[140px] rounded-full bg-orange opacity-10 pointer-events-none"
+                aria-hidden="true"
+              />
+              <div className="relative w-16 h-16 rounded-2xl bg-orange/15 flex items-center justify-center shrink-0">
+                <TrendingDown className="text-orange" size={30} />
+              </div>
+              <div className="relative font-heading text-orange text-[3.5rem] md:text-[56px] font-extrabold leading-none shrink-0">
+                <span className="text-4xl align-middle">−</span>30%
+              </div>
+              <div className="relative text-sm text-white/70 leading-relaxed">
+                <strong className="text-white">
+                  1h de formation peut réduire de 30% les douleurs déclarées par les
+                  salariés.
+                </strong>
+                <br />
+                Une démarche concrète, sans coupure de productivité, partout en
+                France.
               </div>
             </div>
           </div>
@@ -419,7 +590,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
               {differentiators.map((d) => (
                 <Card key={d.title} hover accent="none" className="flex gap-5 p-6">
-                  <span className="text-3xl shrink-0 mt-0.5" aria-hidden="true">{d.icon}</span>
+                  <div
+                    className={`w-11 h-11 rounded-[10px] ${d.iconBg} ${d.iconColor} flex items-center justify-center shrink-0`}
+                  >
+                    <d.icon size={22} aria-hidden="true" />
+                  </div>
                   <div>
                     <h3 className="font-heading text-navy font-bold text-lg mb-2">
                       {d.title}
@@ -507,44 +682,58 @@ export default function HomePage() {
 
         {/* ══ MÉTHODE ═════════════════════════════════════════ */}
         <section
-          className="bg-white py-[clamp(4rem,8vw,7rem)]"
+          className="relative py-[clamp(4rem,8vw,7rem)] px-5 md:px-16 overflow-hidden"
           aria-labelledby="method-title"
         >
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-            <div className="text-center mb-12">
-              <Badge variant="navy" className="mb-4">Notre méthode</Badge>
-              <h2
-                id="method-title"
-                className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] text-navy leading-tight tracking-tight"
-              >
-                Du premier contact à la formation terrain.
-              </h2>
-              <p className="text-navy/60 mt-3 max-w-md mx-auto">
-                Une méthode éprouvée en 4 étapes, du diagnostic initial à
-                l&apos;intervention dans vos locaux.
-              </p>
-            </div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/video-confiance-accueil.mp4" type="video/mp4" />
+          </video>
+          <div
+            className="absolute inset-0 z-[1] bg-gradient-to-br from-teal-dark/90 to-navy/90"
+            aria-hidden="true"
+          />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {steps.map((step, i) => (
-                <div key={step.num} className="relative flex flex-col">
-                  <Card className="flex-1 p-6 text-center" hover>
-                    <span className="text-navy/20 font-heading text-5xl font-bold block mb-3">
+          <div className="relative z-[2] max-w-[960px] mx-auto">
+            <Badge variant="teal" className="mb-5">Notre méthode</Badge>
+            <h2
+              id="method-title"
+              className="font-heading text-white text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold tracking-tight mb-3 leading-tight"
+            >
+              Du premier contact
+              <br className="hidden md:block" /> à la formation terrain.
+            </h2>
+            <p className="text-white/75 text-[15px] leading-relaxed mb-9 font-light max-w-[480px]">
+              Une méthode éprouvée en 4 étapes, du diagnostic initial à
+              l&apos;intervention dans vos locaux.
+            </p>
+
+            <div className="flex flex-col gap-6 max-w-[560px]">
+              {steps.map((step) => (
+                <div key={step.num} className="flex items-start gap-4">
+                  <div
+                    className={`w-11 h-11 rounded-xl ${step.iconBg} ${step.iconColor} flex items-center justify-center shrink-0`}
+                  >
+                    <step.icon size={22} />
+                  </div>
+                  <div>
+                    <span
+                      className={`font-heading font-extrabold text-[11px] tracking-wider block mb-0.5 ${step.numColor}`}
+                    >
                       {step.num}
                     </span>
-                    <step.icon className="text-orange mx-auto mb-3" size={28} />
-                    <h3 className="font-heading text-navy font-bold text-base mb-2">
+                    <h3 className="font-heading font-extrabold text-white text-base mb-1 tracking-tight">
                       {step.title}
                     </h3>
-                    <p className="text-navy/60 text-sm leading-relaxed">{step.text}</p>
-                  </Card>
-                  {i < steps.length - 1 && (
-                    <ArrowRight
-                      className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 text-navy/20 z-10"
-                      size={20}
-                      aria-hidden="true"
-                    />
-                  )}
+                    <p className="text-white/70 text-[15px] leading-relaxed">
+                      {step.text}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -574,7 +763,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {situations.map((s) => (
                 <Card key={s.title} hover className="flex gap-4 p-5">
-                  <span className="text-2xl shrink-0" aria-hidden="true">{s.icon}</span>
+                  <div
+                    className={`w-10 h-10 rounded-[10px] ${s.iconBg} ${s.iconColor} flex items-center justify-center shrink-0`}
+                  >
+                    <s.icon size={18} aria-hidden="true" />
+                  </div>
                   <div>
                     <h3 className="font-semibold text-navy text-sm mb-1">{s.title}</h3>
                     <p className="text-navy/60 text-sm leading-relaxed">{s.text}</p>
@@ -605,7 +798,11 @@ export default function HomePage() {
               {sectors.map((s) => (
                 <Link key={s.title} href={s.href} className="block">
                   <Card hover className="p-5 text-center h-full cursor-pointer">
-                    <span className="text-3xl block mb-2" aria-hidden="true">{s.icon}</span>
+                    <div
+                      className={`w-11 h-11 rounded-[10px] ${s.iconBg} ${s.iconColor} flex items-center justify-center mx-auto mb-2`}
+                    >
+                      <s.icon size={20} aria-hidden="true" />
+                    </div>
                     <h3 className="font-semibold text-navy text-sm mb-1">{s.title}</h3>
                     <p className="text-navy/55 text-xs leading-relaxed">{s.desc}</p>
                   </Card>

@@ -155,8 +155,21 @@ export default function FormationsSedentairesPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="bg-[#1E2952] pt-[100px] pb-16 md:pb-24" aria-labelledby="page-title">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8">
+        <section
+          className="relative bg-[#1E2952] pt-[100px] pb-16 md:pb-24 overflow-hidden"
+          aria-labelledby="page-title"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/download-web.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 z-[1] bg-navy/70" aria-hidden="true" />
+          <div className="relative z-[2] max-w-[1200px] mx-auto px-5 md:px-8">
             <Badge variant="teal" className="mb-5">Formations Sédentaires</Badge>
             <h1
               id="page-title"
@@ -166,7 +179,7 @@ export default function FormationsSedentairesPage() {
             </h1>
             <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
               Dans un contexte professionnel de plus en plus sédentaire, il est essentiel
-              d'agir avant que les douleurs ne s'installent. Nos formations offrent des solutions
+              d&apos;agir avant que les douleurs ne s&apos;installent. Nos formations offrent des solutions
               concrètes et adaptées pour prévenir les TMS liés au travail de bureau.
             </p>
             <div className="flex flex-wrap gap-5 text-white/60 text-sm">
@@ -181,7 +194,7 @@ export default function FormationsSedentairesPage() {
         {/* Formations list */}
         <section className="bg-cream py-[clamp(4rem,8vw,7rem)]" aria-label="Liste des formations sédentaires">
           <div className="max-w-[1200px] mx-auto px-5 md:px-8 space-y-8">
-            {formations.map((f, i) => (
+            {formations.map((f) => (
               <Card key={f.title} accent={f.color} className="p-0 overflow-hidden">
                 <div className="p-6 md:p-8">
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -242,7 +255,7 @@ export default function FormationsSedentairesPage() {
                         <p className="text-navy text-sm">Aucun</p>
                       </div>
                       <div>
-                        <p className="text-navy/50 text-xs uppercase tracking-wide mb-1">Délais d'accès</p>
+                        <p className="text-navy/50 text-xs uppercase tracking-wide mb-1">Délais d&apos;accès</p>
                         <p className="text-navy text-sm">4 semaines</p>
                       </div>
                       {f.support && (
