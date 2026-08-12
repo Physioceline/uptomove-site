@@ -7,7 +7,7 @@
 <meta name="description" content="UP TO MOVE est fondée par Céline Schneider, kinésithérapeute spécialisée en prévention TMS en entreprise. Découvrez notre histoire et notre approche.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Compressed:wght@700;800;900&family=Josefin+Slab:wght@700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Compressed:wght@700;800;900&family=Josefin+Slab:wght@700&family=Nunito:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family:'Nunito', sans-serif; background: #EFEFEF; }
@@ -94,15 +94,152 @@
   .footer-bottom .links { display:flex; gap:20px; }
   .footer-bottom a { font-size:12px; color:rgba(255,255,255,0.5); }
 
-  .fade-up { opacity:0; transform:translateY(32px); transition:opacity .6s ease-out, transform .6s ease-out; }
+  .fade-up { opacity:0; transform:translateY(48px); transition:opacity .7s ease-out, transform .7s ease-out; }
   .fade-up.visible { opacity:1; transform:translateY(0); }
+
+  /* Fondu simple (sans décalage) pour les sections pleine largeur : évite tout écart visuel entre deux blocs de couleurs différentes (ex : vague) pendant l'animation */
+  .section-fade { opacity:0; transition:opacity .7s ease-out; }
+  .section-fade.visible { opacity:1; }
+
+  .stagger > * { opacity:0; transform:translateY(44px) scale(.97); transition:opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
+  .stagger.visible > *:nth-child(1) { transition-delay:0s; }
+  .stagger.visible > *:nth-child(2) { transition-delay:.1s; }
+  .stagger.visible > *:nth-child(3) { transition-delay:.2s; }
+  .stagger.visible > *:nth-child(4) { transition-delay:.3s; }
+  .stagger.visible > * { opacity:1; transform:translateY(0) scale(1); }
+
+  .fade-left { opacity:0; transform:translateX(-56px); transition:opacity .7s ease-out, transform .7s ease-out; }
+  .fade-left.visible { opacity:1; transform:translateX(0); }
+  .fade-right { opacity:0; transform:translateX(56px); transition:opacity .7s ease-out, transform .7s ease-out; }
+  .fade-right.visible { opacity:1; transform:translateX(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up, .fade-left, .fade-right, .stagger > * { transition:none; opacity:1; transform:none; }
+  }
+
+  /* ── Histoire (nouvelle version) ── */
+  .story-section { background:#fff; }
+  .story-grid { display:grid; grid-template-columns:1.3fr 0.7fr; gap:56px; align-items:stretch; }
+  .story-side { display:flex; flex-direction:column; height:100%; }
+  .story-eyebrow { display:inline-block; font-family:'Encode Sans Compressed', sans-serif; font-weight:700; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#2EC4B6; margin-bottom:10px; }
+  .story-title { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(1.8rem,3.6vw,2.6rem); color:#1E2952; letter-spacing:-0.5px; margin-bottom:22px; }
+  .story-lead { font-size:16px; color:#1E2952; margin-bottom:6px; }
+  .story-script { font-family:'Caveat', cursive; font-weight:700; font-size:clamp(1.8rem,3.4vw,2.4rem); color:#FF914D; line-height:1.2; margin-bottom:26px; }
+  .story-bullets { list-style:none; display:flex; flex-direction:column; gap:16px; }
+  .story-bullets li { position:relative; padding-left:22px; font-size:15px; color:#374151; line-height:1.75; }
+  .story-bullets li::before { content:''; position:absolute; left:0; top:8px; width:7px; height:7px; background:#1E2952; border-radius:2px; }
+  .story-bullets strong { color:#1E2952; }
+  .story-bullets em { font-family:'Nunito', sans-serif; font-style:italic; font-weight:400; font-size:15px; color:#374151; }
+  .story-badge-logo { width:100%; max-width:280px; display:block; margin:0 auto 24px; }
+  .qualiopi-mini { background:#F7F6F2; border-radius:16px; padding:28px 24px; text-align:center; margin-top:auto; }
+  .qualiopi-mini-logo { height:64px; width:auto; margin:0 auto 16px; display:block; }
+  .qualiopi-mini-text { font-size:13px; color:#1E2952; font-weight:600; margin-bottom:4px; }
+  .qualiopi-mini-category { font-size:13.5px; color:#FF914D; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:18px; }
+  .qualiopi-mini .btn { font-size:12.5px; padding:12px 18px; width:100%; justify-content:center; }
+
+  .story-bullets em.moving-quote { display:block; margin-top:6px; font-family:'Nunito', sans-serif; font-style:italic; font-weight:400; font-size:15px; color:#FF914D; }
+
+  /* ── Effet d'arrivée du bloc de texte (Histoire) ── */
+  .story-text li { opacity:0; transform:translateX(-24px); transition:opacity .6s ease-out, transform .6s ease-out; }
+  .story-text .story-eyebrow, .story-text .story-title, .story-text .story-lead, .story-text .story-script { opacity:0; transform:translateY(18px); transition:opacity .6s ease-out, transform .6s ease-out; }
+  .story-text.in-view .story-eyebrow { opacity:1; transform:translateY(0); transition-delay:.05s; }
+  .story-text.in-view .story-title { opacity:1; transform:translateY(0); transition-delay:.15s; }
+  .story-text.in-view .story-lead { opacity:1; transform:translateY(0); transition-delay:.25s; }
+  .story-text.in-view .story-script { opacity:1; transform:translateY(0); transition-delay:.35s; }
+  .story-text.in-view li { opacity:1; transform:translateX(0); }
+  .story-text.in-view li:nth-child(1) { transition-delay:.45s; }
+  .story-text.in-view li:nth-child(2) { transition-delay:.55s; }
+  .story-text.in-view li:nth-child(3) { transition-delay:.65s; }
+  .story-text.in-view li:nth-child(4) { transition-delay:.75s; }
+  .story-text.in-view li:nth-child(5) { transition-delay:.85s; }
+  .story-text.in-view li:nth-child(6) { transition-delay:.95s; }
+  .story-text.in-view li:nth-child(7) { transition-delay:1.05s; }
+  @media (prefers-reduced-motion: reduce) {
+    .story-text li, .story-text .story-eyebrow, .story-text .story-title, .story-text .story-lead, .story-text .story-script { opacity:1; transform:none; transition:none; }
+  }
+
+  .result-box { background:#1E2952; border-radius:20px; padding:36px 40px; margin-top:44px; }
+  .result-box .result-label { font-family:'Encode Sans Compressed', sans-serif; font-weight:700; font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:14px; display:block; }
+  .result-box .result-tag { display:inline-block; background:#FFDE59; color:#1E2952; font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(1.4rem,3vw,2.1rem); letter-spacing:-0.3px; padding:10px 28px; border-radius:100px; margin:0 0 20px; box-shadow:0 12px 32px rgba(255,222,89,0.35); animation:tagPulse 2.4s ease-in-out infinite; }
+  @keyframes tagPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.035); } }
+  @media (prefers-reduced-motion: reduce) { .result-box .result-tag { animation:none; } }
+  .result-box p { color:rgba(255,255,255,0.8); font-size:14.5px; line-height:1.8; margin-bottom:10px; }
+  .result-box p:last-child { margin-bottom:0; }
+  .result-box strong { color:#fff; }
+
+  /* ── Stats ── */
+  .stats-section { position:relative; text-align:center; background:#1E2952 url('chavigny-2.jpg') center/cover no-repeat; isolation:isolate; }
+  .stats-section::before { content:''; position:absolute; inset:0; background:rgba(30,41,82,0.88); z-index:0; }
+  .stats-section .wrap { position:relative; z-index:1; }
+  .stats-number { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(3.2rem,7.5vw,5rem); color:#2EC4B6; line-height:1; }
+  .stats-label { font-size:clamp(18px,2.2vw,22px); color:#fff; font-weight:700; margin-top:10px; margin-bottom:26px; }
+  .stats-section p { font-size:clamp(16px,1.8vw,18.5px); font-weight:600; color:#fff; max-width:680px; margin:0 auto 6px; line-height:1.6; }
+  .stats-section strong { color:#FF914D; font-weight:800; }
+
+  /* ── Devenir intervenant ── */
+  .join-card { background:#1E2952; border-radius:24px; overflow:hidden; display:grid; grid-template-columns:0.9fr 1.1fr; align-items:stretch; margin-top:56px; position:relative; }
+  .join-illustration { background:#fff; display:flex; align-items:center; justify-content:center; height:100%; }
+  .join-illustration svg { width:100%; max-width:260px; height:auto; }
+  .join-photo { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .join-text { padding:48px 48px 48px 40px; position:relative; overflow:hidden; }
+  .join-text::before { content:''; position:absolute; inset:0; background:
+      radial-gradient(circle at 90% 15%, rgba(255,145,77,0.18), transparent 45%),
+      radial-gradient(circle at 100% 90%, rgba(255,222,89,0.12), transparent 40%); pointer-events:none; }
+  .join-eyebrow { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(1.3rem,2.4vw,1.7rem); color:#2EC4B6; letter-spacing:-0.3px; margin-bottom:16px; position:relative; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .join-eyebrow-logo { height:3.2em; width:auto; display:inline-block; vertical-align:middle; }
+  .join-text p { color:rgba(255,255,255,0.82); font-size:15px; line-height:1.75; margin-bottom:14px; position:relative; max-width:460px; }
+  .join-text strong { color:#fff; }
+  .join-text .btn { margin-top:10px; position:relative; }
+  .btn-orange-solid { background:#FF914D; color:#fff; }
+
+  /* ── Informations ── */
+  .info-section { background:#FFDE59; position:relative; margin-top:-3px; z-index:1; }
+  .info-title { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(1.7rem,3.2vw,2.3rem); color:#1E2952; text-align:center; letter-spacing:-0.5px; margin-bottom:40px; }
+  .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .info-card { background:#fff; border-radius:20px; padding:40px 32px 0; text-align:center; position:relative; overflow:hidden; }
+  .info-icon { width:64px; height:64px; border-radius:50%; background:#fff; border:2px solid #1E2952; display:flex; align-items:center; justify-content:center; overflow:hidden; margin:0 auto 18px; color:#1E2952; }
+  .info-icon svg { width:34px; height:34px; }
+  .info-icon-img { width:100px; height:auto; max-width:none; display:block; object-fit:contain; }
+  .info-card h3 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:17px; color:#1E2952; margin-bottom:24px; }
+  .info-card .info-illustration { width:100%; max-width:220px; margin:0 auto; display:block; }
+  .info-card-photo-outer { position:relative; }
+  .info-card-photo { padding:40px 0 0; }
+  .info-card-photo h3 { padding:0 32px; }
+  .info-photo-wrap { position:relative; border-radius:0 0 20px 20px; overflow:hidden; background:#2EC4B6; margin-top:24px; }
+  .info-photo { width:100%; aspect-ratio:1200/750; object-fit:cover; display:block; }
+  .info-icon-top { position:absolute; top:-36px; left:50%; transform:translateX(-50%); margin:0; width:72px; height:72px; z-index:3; box-shadow:0 8px 20px rgba(30,41,82,0.15); }
+
+  /* ── Équipe ── */
+  .team-section { background:#FF914D; position:relative; overflow:hidden; padding-top:1.75rem; padding-bottom:120px; }
+  .team-badge { display:inline-block; background:#FFDE59; color:#1E2952; font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:15px; letter-spacing:0.5px; padding:10px 26px; border-radius:100px; margin-bottom:36px; }
+  .team-shapes { position:absolute; inset:0; pointer-events:none; opacity:0.5; }
+  .team-card { position:relative; background:#fff; border-radius:20px; overflow:hidden; display:grid; grid-template-columns:280px 1fr; margin-bottom:28px; box-shadow:0 20px 50px rgba(30,41,82,0.18); }
+  .team-photo { width:100%; height:100%; object-fit:cover; display:block; min-height:280px; }
+  .team-info { padding:34px 40px; }
+  .team-info h3 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:24px; color:#2EC4B6; margin-bottom:6px; }
+  .team-role { font-family:'Encode Sans Compressed', sans-serif; font-weight:700; font-size:15px; color:#1E2952; margin-bottom:16px; }
+  .team-info p.bio { font-size:14.5px; color:#374151; line-height:1.75; margin-bottom:14px; }
+  .team-info p.bio strong { color:#1E2952; }
+  .team-zone { font-size:13.5px; color:#6B7280; font-style:italic; }
+  .team-wave { position:absolute; left:0; right:0; bottom:-2px; width:100%; height:auto; display:block; line-height:0; }
 
   @media (max-width: 900px) {
     .site-nav { padding:18px 24px; flex-wrap:wrap; gap:14px; }
     .site-nav-links { flex-wrap:wrap; justify-content:center; gap:14px; }
     .page-hero, section { padding-left:24px; padding-right:24px; }
     .histoire-grid, .valeurs-grid { grid-template-columns:1fr; }
+    .story-grid { grid-template-columns:1fr; }
+    .story-badge-logo { max-width:200px; }
+    .moving-quote { white-space:normal; animation:none; font-size:14px; }
+    .join-card, .info-grid { grid-template-columns:1fr; }
+    .join-illustration { padding-top:40px; }
+    .team-card { grid-template-columns:1fr; }
+    .team-photo { min-height:260px; }
+    .team-info { padding:26px 24px; }
     .footer-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns:1fr; }
   }
 </style>
 </head>
@@ -120,90 +257,129 @@
   </ul>
 </nav>
 
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <span class="tag tag-teal">À propos</span>
-    <h1>Des kinésithérapeutes au service de la prévention en entreprise.</h1>
-    <p>UP TO MOVE est née d'un constat simple : la santé au travail mérite des professionnels de santé réels, pas des formations génériques.</p>
-  </div>
-</section>
-
 <!-- Histoire -->
-<section class="bg-white">
-  <div class="wrap histoire-grid">
-    <div>
-      <span class="tag tag-orange-solid">Fondatrice</span>
-      <h2>Céline Schneider — Kinésithérapeute D.E.</h2>
-      <p>Kinésithérapeute diplômée d'État, Céline Schneider a fondé UP TO MOVE après avoir observé l'écart entre ce dont les entreprises avaient besoin et ce que proposaient les formateurs généralistes.</p>
-      <p>Son constat : les TMS sont la première cause de maladie professionnelle en France, et pourtant les formations proposées sont souvent confiées à des coachs bien-être qui ne connaissent ni l'anatomie, ni les mécanismes lésionnels.</p>
-      <p>UP TO MOVE apporte la rigueur clinique du kinésithérapeute directement sur le terrain — dans les bureaux, les entrepôts, les usines — pour des résultats mesurables et une conformité réglementaire garantie.</p>
-      <div class="contact-chips">
-        <div class="contact-chip">📞 06 31 19 77 69</div>
-        <div class="contact-chip">✉️ physio.celine@gmail.com</div>
+<section class="story-section">
+  <div class="wrap story-grid">
+    <div class="story-text">
+      <span class="story-eyebrow">UP TO MOVE</span>
+      <h1 class="story-title">QUI SOMMES-NOUS ?</h1>
+      <p class="story-lead">Tout a commencé avec une conviction simple :</p>
+      <p class="story-script">Le mouvement, c'est la vie.</p>
+      <ul class="story-bullets">
+        <li>Céline, <strong>kinésithérapeute</strong> passionnée, témoin chaque jour des douleurs silencieuses qui s'installent dans les corps, des gestes répétés, des postures figées, des journées passées sans bouger.</li>
+        <li>Et elle décide de <strong>faire bouger les lignes</strong>.</li>
+        <li>En <strong>2020</strong> : pendant la pandémie, le monde s'est arrêté. Les bureaux se sont vidés, les salons sont devenus des open spaces, les écrans ont remplacé les collègues. <strong>Les corps, eux, ont continué de souffrir.</strong></li>
+        <li>C'est alors que via un patient, une grande entreprise américaine basée à Paris la contacte :<br><em class="moving-quote">« Pouvez-vous aider nos équipes à prévenir les TMS, même à distance ? »</em></li>
+        <li>Avec des moyens simples, une visioconférence et beaucoup de conviction, <strong>le premier atelier est créé</strong>.</li>
+        <li>En 2026, dans le cadre de son développement, <strong style="color:#2EC4B6;">UP TO MOVE</strong> a été sélectionnée et accompagnée par la <strong>CCI Paris Île-de-France</strong>, renforçant ainsi sa structuration et son positionnement sur les enjeux de prévention et de QVCT.</li>
+        <li>Nous avons également obtenu la <strong>certification Qualiopi</strong>, au titre de la catégorie « actions de formation », qui atteste de la qualité de nos processus de formation.</li>
+      </ul>
+    </div>
+    <div class="story-side">
+      <img src="logo-uptomove-web.png" alt="UP TO MOVE" class="story-badge-logo">
+      <div class="qualiopi-mini">
+        <img src="logo-qualiopi.png" alt="Qualiopi — processus certifié — République française" class="qualiopi-mini-logo">
+        <p class="qualiopi-mini-text">Certification délivrée au titre de la catégorie :</p>
+        <p class="qualiopi-mini-category">Actions de formation</p>
+        <a href="certificat-qualiopi-uptomove.pdf" target="_blank" rel="noopener" class="btn btn-orange-solid">Consulter le certificat Qualiopi</a>
       </div>
     </div>
-    <div class="feature-cards">
-      <div class="feature-card">
-        <span class="feature-icon">🩺</span>
-        <div>
-          <h3>Expertise clinique</h3>
-          <p>Kinésithérapeute diplômée d'État — formation académique en anatomie, physiologie, pathologies musculo-squelettiques.</p>
+  </div>
+  <div class="wrap">
+    <div class="result-box">
+      <span class="result-label">Résultat</span>
+      <div class="result-tag">UN SUCCÈS IMMÉDIAT</div>
+      <p>Des sourires, des retours enthousiastes, des salariés qui retrouvent le plaisir de bouger, même derrière un écran.<br>Ce jour-là, une évidence s'est imposée : <strong>la prévention peut être vivante, motivante et accessible à tous</strong>.</p>
+      <p>C'est ainsi qu'est née <strong style="color:#2EC4B6;">UP TO MOVE</strong> — une aventure humaine avant tout.<br>Depuis, nous avons accompagné plus de <strong>1000 personnes</strong>, partout en France, en présentiel ou à distance. Des salariés, des managers, des entreprises qui ont choisi de remettre le mouvement au cœur du travail.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="wrap">
+    <div class="stats-number">+1000</div>
+    <div class="stats-label">personnes accompagnées</div>
+    <p><strong>Notre mission</strong> : faire rimer santé, performance et bien-être.</p>
+    <p><strong>Notre moteur</strong> : transmettre, inspirer et donner envie d'agir<br>avant que la douleur ne s'installe.</p>
+  </div>
+</section>
+
+<!-- Équipe -->
+<section class="team-section">
+  <div class="wrap">
+    <span class="team-badge">L'ÉQUIPE</span>
+    <div class="team-card">
+      <img src="celine-schneider.jpg" alt="Céline Schneider" class="team-photo">
+      <div class="team-info">
+        <h3>Céline Schneider</h3>
+        <p class="team-role">Kinésithérapeute et fondatrice de UP TO MOVE</p>
+        <p class="bio">Au contact des patients depuis plus de 13 ans, elle a fait de la <strong>prévention-santé son véritable combat</strong>. Convaincue qu'il faut <strong>agir avant de subir</strong>, elle crée UP TO MOVE, une démarche nouvelle qui bouscule les codes de la prévention en entreprise.<br>Son objectif : <strong>remettre le mouvement au cœur du travail</strong> et prouver que santé et performance vont de pair.</p>
+        <p class="team-zone">Zone d'intervention : Île-de-France, Grand-est, Centre-Val-de-Loire, Pays-de-la-Loire, Bourgogne-Franche-Comté, Bretagne, Normandie, Haut-de-France</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="delphine-schaff.jpg" alt="Delphine Schaff" class="team-photo">
+      <div class="team-info">
+        <h3>Delphine Schaff</h3>
+        <p class="team-role">Préventeur-santé UP TO MOVE</p>
+        <p class="bio">Kinésithérapeute, rejoint UP TO MOVE pour <strong>faire bouger les entreprises</strong> ! Convaincue que la prévention est la clé du bien-être au travail, elle met son expertise et son énergie au service de formations vivantes, concrètes et durables.</p>
+        <p class="team-zone">Zone d'intervention : Nouvelle-Aquitaine, Occitanie, Auvergne-Rhône-Alpes, Provence-Alpes-Côte-d'Azur</p>
+      </div>
+    </div>
+  </div>
+  <svg class="team-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,40 C240,100 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z" fill="#FFDE59"/>
+  </svg>
+</section>
+
+<!-- Informations -->
+<section class="info-section">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="info-card-photo-outer">
+        <div class="info-icon info-icon-top">
+          <img src="carte-france.png" alt="Carte de France" class="info-icon-img">
+        </div>
+        <div class="info-card info-card-photo">
+          <h3>Présent sur toute la France</h3>
+          <div class="info-photo-wrap">
+            <img src="illustration-france-badge.png" alt="Carte de France UP TO MOVE" class="info-photo">
+          </div>
         </div>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">🏢</span>
-        <div>
-          <h3>Terrain &amp; entreprise</h3>
-          <p>Interventions dans tous secteurs : bureaux, industrie, santé, commerce, BTP. Adaptation permanente aux conditions réelles.</p>
+      <div class="info-card-photo-outer">
+        <div class="info-icon info-icon-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1E2952" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 6.5c-1.6-1.2-3.7-1.8-5.8-1.8-.7 0-1.2.5-1.2 1.2v11c0 .7.5 1.2 1.2 1.2 2.1 0 4.2.6 5.8 1.8m0-13.4c1.6-1.2 3.7-1.8 5.8-1.8.7 0 1.2.5 1.2 1.2v11c0 .7-.5 1.2-1.2 1.2-2.1 0-4.2.6-5.8 1.8m0-13.4v13.4"/>
+          </svg>
         </div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📋</span>
-        <div>
-          <h3>Conformité réglementaire</h3>
-          <p>Certifiée Qualiopi. Maîtrise du cadre légal : Art. L.4121-1, DUERP, PAPRIPACT, Passeport Prévention.</p>
-        </div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📊</span>
-        <div>
-          <h3>Résultats mesurables</h3>
-          <p>Approche documentée : −30% de douleurs déclarées après la première session. Bilans post-formation systématiques.</p>
+        <div class="info-card info-card-photo">
+          <h3>En présentiel ou en visio-conférence</h3>
+          <div class="info-photo-wrap">
+            <img src="illustration-presentiel-visio.png" alt="Formation en présentiel ou en visio-conférence" class="info-photo">
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Valeurs -->
+<!-- Devenir intervenant -->
 <section class="bg-cream">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag" style="color:#1E2952; background:rgba(30,41,82,0.06); border:1px solid rgba(30,41,82,0.15);">Nos valeurs</span>
-      <h2>Ce qui guide chaque intervention</h2>
-    </div>
-    <div class="valeurs-grid">
-      <div class="valeur-card teal">
-        <h3>Rigueur clinique</h3>
-        <p>Chaque formation repose sur des données probantes. Pas de promesses sans fondement scientifique. L'anatomie et la biomécanique guident toutes nos recommandations.</p>
+    <div class="join-card">
+      <div class="join-illustration">
+        <img src="daiichi-3-top.jpg" alt="Formation UP TO MOVE en entreprise" class="join-photo">
       </div>
-      <div class="valeur-card orange">
-        <h3>Adaptation terrain</h3>
-        <p>Pas de formations standardisées. Nous analysons les vrais gestes, les vraies contraintes, les vrais postes — et nous adaptons chaque intervention en conséquence.</p>
-      </div>
-      <div class="valeur-card yellow">
-        <h3>Résultats prouvés</h3>
-        <p>Nous mesurons l'efficacité de chaque formation. Bilans post-formation, suivi des indicateurs TMS, reporting pour votre DUERP et vos instances RH.</p>
+      <div class="join-text">
+        <h2 class="join-eyebrow">DEVENIR INTERVENANT <img src="logo-uptomove-web.png" alt="UP TO MOVE" class="join-eyebrow-logo"></h2>
+        <p><strong style="color:#FF914D;">Kinésithérapeutes</strong>, il est temps de sortir de votre cabinet et de diversifier votre manière de travailler !</p>
+        <p>Intervenez en entreprise, transmettez votre expertise et <strong style="color:#FF914D;">donnez un nouveau sens à votre pratique</strong> en agissant directement sur le terrain, là où naissent les douleurs.</p>
+        <p>Si vous souhaitez <strong style="color:#FF914D;">rejoindre l'aventure</strong> en tant que kinésithérapeutes, n'hésitez pas à nous contacter.</p>
+        <a href="contact.html" class="btn btn-orange-solid">Devenir intervenant UP TO MOVE</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="wrap">
-    <h2>Travaillons ensemble</h2>
-    <p>Un premier échange de 20 minutes pour comprendre vos enjeux et vous proposer le programme le plus adapté.</p>
-    <a href="#" class="btn btn-white">Prendre contact →</a>
   </div>
 </section>
 
@@ -268,10 +444,39 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('section, .feature-card, .valeur-card').forEach(el => {
+  document.querySelectorAll('section').forEach(el => {
+    el.classList.add('section-fade');
+    observer.observe(el);
+  });
+
+  // Stagger sur les grilles de cartes
+  document.querySelectorAll('.feature-cards, .valeurs-grid, .info-grid').forEach(el => {
+    el.classList.add('stagger');
+    observer.observe(el);
+  });
+
+  // Titres avec léger délai
+  document.querySelectorAll('h2').forEach(el => {
+    el.style.transitionDelay = '0.1s';
     el.classList.add('fade-up');
     observer.observe(el);
   });
+
+  // Fade latéral sur les cartes de l'équipe
+  document.querySelectorAll('.team-card').forEach((el, i) => {
+    el.classList.add(i % 2 === 0 ? 'fade-left' : 'fade-right');
+    observer.observe(el);
+  });
+
+  const textObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        textObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.story-text').forEach(el => textObserver.observe(el));
 });
 </script>
 </body>

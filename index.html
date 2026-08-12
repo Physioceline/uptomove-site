@@ -274,6 +274,65 @@
 }
 </style>
 
+<style>
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  section, footer, .hero, .constat {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  section, .hero, .constat {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+
+  /* Grilles : tout en 1 colonne */
+  .cards, [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns"] { gap: 20px !important; }
+
+  /* Nav */
+  .hero-nav { flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 36px; row-gap: 10px; }
+  .hero-logo { height: 72px; }
+  .hero-nav-links { gap: 10px 14px; row-gap: 10px; }
+  .hero-nav-links a { font-size: 13px; }
+
+  /* Hero */
+  .hero h1 { font-size: 34px; letter-spacing: -0.5px; }
+  .hero-sub { font-size: 15px; }
+  .hero-definition { flex-direction: row; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .hero-ctas .btn-orange, .hero-ctas .btn-teal { width: 100%; justify-content: center; }
+
+  /* Constat */
+  .constat h2 { font-size: 28px; }
+
+  /* Titres de section en style inline (BLOC 3 à 9) */
+  h2[style*="font-size:44px"], h2[style*="font-size: 44px"],
+  h2[style*="font-size:42px"], h2[style*="font-size: 42px"] { font-size: 28px !important; }
+  h2[style*="font-size:36px"], h2[style*="font-size: 36px"],
+  h2[style*="font-size:34px"], h2[style*="font-size: 34px"] { font-size: 24px !important; }
+
+  /* Timeline BLOC 3 : passer les colonnes internes en 1 colonne */
+  .b3-content-left, .b3-content-right { padding: 24px 0 !important; }
+  .stat-finale { flex-direction: column; text-align: center; }
+
+  /* Tableau comparatif BLOC 4 : scroll horizontal plutôt qu'écrasement */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+  .b4-passeport { flex-direction: column; text-align: center; gap: 20px !important; }
+
+  /* Footer */
+  footer[style*="padding:64px"] { padding-top: 48px !important; }
+
+  /* Newsletter form */
+  #newsletter-form { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 28px; }
+  .hero-nav-links { justify-content: center; }
+}
+</style>
+
 <script>
 // ── IntersectionObserver : fade-up, stagger, fade-left/right ──
 document.addEventListener('DOMContentLoaded', function() {
