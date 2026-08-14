@@ -38,12 +38,21 @@
     .nav-dropdown-panel { position:static; transform:none; width:100%; min-width:0; margin-top:8px; box-shadow:none; }
   }
 
-  .page-hero { background:#1E2952; padding:64px; }
-  .page-hero-inner { max-width:1200px; margin:0 auto; }
+  .page-hero { background:#1E2952; padding:64px; position:relative; overflow:hidden; }
+  .page-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(0.6) saturate(0.85); }
+  .page-hero-overlay { position:absolute; inset:0; background:rgba(30,41,82,0.78); z-index:1; }
+  .page-hero-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; }
   .tag { display:inline-block; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-bottom:20px; }
   .tag-yellow { background:rgba(255,222,89,0.18); border:1px solid rgba(255,222,89,0.45); color:#FFDE59; }
   .page-hero h1 { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(2rem,4.2vw,3.2rem); line-height:1.08; color:#fff; letter-spacing:-1px; max-width:700px; margin-bottom:18px; }
-  .page-hero p { font-size:18px; color:rgba(255,255,255,0.7); font-weight:300; line-height:1.7; max-width:560px; }
+  .page-hero p { font-size:18px; color:rgba(255,255,255,0.7); font-weight:300; line-height:1.7; max-width:560px; margin-bottom:14px; }
+  .icon-inline { width:14px; height:14px; vertical-align:-2.5px; }
+  .page-hero-meta { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+  .page-hero-meta span { font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:7px; padding:9px 18px; border-radius:100px; }
+  .page-hero-meta .meta-yellow { background:#FFDE59; color:#1E2952; }
+  .page-hero-meta .meta-teal { background:#2EC4B6; color:#fff; }
+  .page-hero-meta .meta-orange { background:#FF914D; color:#fff; }
+  .hl-pill { display:inline-block; background:#FFDE59; color:#1E2952; font-weight:800; padding:2px 12px; border-radius:100px; }
 
   section { padding: clamp(3rem,7vw,5.5rem) 64px; }
   .wrap { max-width:1200px; margin:0 auto; }
@@ -52,18 +61,28 @@
 
   /* Contact layout */
   .contact-grid { display:grid; grid-template-columns:1fr 2fr; gap:32px; align-items:start; }
-  .info-card { background:#fff; border:1px solid #E8E6E0; border-radius:14px; padding:20px 22px; display:flex; gap:16px; align-items:flex-start; margin-bottom:14px; }
-  .info-card .info-icon { flex-shrink:0; width:22px; height:22px; color:#FF914D; margin-top:2px; }
-  .info-card.teal .info-icon { color:#2EC4B6; }
-  .info-card p.label { font-weight:700; color:#1E2952; font-size:13.5px; margin-bottom:3px; }
-  .info-card a, .info-card p.val { color:#4B5563; font-size:13.5px; font-weight:500; }
-  .info-card a:hover { color:#FF914D; }
-  .qualiopi-mini { background:#1E2952; border-radius:20px; padding:22px; text-align:center; }
-  .qualiopi-mini p.check { color:#FFDE59; font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:17px; margin-bottom:4px; }
-  .qualiopi-mini p.sub { color:rgba(255,255,255,0.6); font-size:11.5px; }
+  .info-panel { background:#fff; border:1px solid #E8E6E0; border-radius:18px; padding:32px 26px; text-align:left; margin-bottom:14px; }
+  .info-panel .eyebrow { font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1E2952; margin-bottom:8px; }
+  .info-panel .panel-logo { height:96px; width:auto; display:block; margin-bottom:22px; }
+  .info-panel .info-row { display:flex; align-items:center; justify-content:flex-start; gap:10px; margin-bottom:14px; font-size:13.5px; color:#1E2952; font-weight:600; }
+  .info-panel .info-row svg { width:18px; height:18px; color:#FF914D; flex-shrink:0; }
+  .info-panel .info-row a { color:#1E2952; font-weight:600; }
+  .info-panel .info-row a:hover { color:#FF914D; }
+  .panel-social { display:flex; gap:10px; justify-content:flex-start; margin:20px 0; }
+  .panel-social a { width:34px; height:34px; border-radius:50%; background:#1E2952; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; }
+  .panel-social a:hover { background:#FF914D; }
+  .info-panel .hours { font-size:13px; color:#4B5563; padding-top:16px; margin-top:2px; border-top:1px solid #E8E6E0; }
+  .info-panel .hours b { color:#1E2952; }
+  .qualiopi-mini { background:#F7F6F2; border:1px solid #E8E6E0; border-radius:20px; padding:26px 22px; text-align:center; border-top:3px solid #2EC4B6; }
+  .qualiopi-mini-logo { height:56px; width:auto; margin:0 auto 14px; display:block; }
+  .qualiopi-mini p.sub { color:#6B7280; font-size:12px; margin-bottom:16px; }
+  .qualiopi-mini .btn { font-size:12.5px; padding:12px 18px; width:100%; justify-content:center; }
 
-  .form-card { background:#fff; border:1px solid #E8E6E0; border-radius:18px; padding:36px; }
-  .form-card h2 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:21px; color:#1E2952; margin-bottom:24px; }
+  .form-card { background:#fff; border:1px solid #E8E6E0; border-radius:18px; padding:36px; position:relative; overflow:hidden; }
+  .form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#FF914D,#FFDE59,#2EC4B6); }
+  .form-card h2 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:21px; color:#1E2952; margin-bottom:10px; }
+  .form-lead { font-size:14.5px; color:#4B5563; line-height:1.6; margin-bottom:22px; }
+  .form-field label .req { color:#FF914D; }
   .form-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
   .form-field label { display:block; font-weight:700; color:#1E2952; font-size:13.5px; margin-bottom:6px; }
   .form-field input, .form-field select, .form-field textarea { width:100%; border:1.5px solid #E8E6E0; border-radius:10px; padding:12px 14px; font-size:14px; color:#1E2952; font-family:'Nunito', sans-serif; background:#F7F6F2; }
@@ -74,6 +93,9 @@
   .btn-orange { background:#FF914D; color:#fff; }
   .btn-full { width:100%; justify-content:center; }
   .form-note { text-align:center; color:#9CA3AF; font-size:12px; margin-top:12px; }
+  .form-status { font-size:13px; font-weight:700; margin-top:12px; text-align:center; display:none; }
+  .form-status.success { display:block; color:#189d91; }
+  .form-status.error { display:block; color:#d9662a; }
 
   footer { background:#1E2952; color:#fff; padding:64px 52px 32px; }
   .footer-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; }
@@ -129,66 +151,66 @@
 </nav>
 
 <section class="page-hero">
+  <video class="page-hero-video" autoplay muted loop playsinline>
+    <source src="Design sans titre-5.mp4" type="video/mp4">
+  </video>
+  <div class="page-hero-overlay"></div>
   <div class="page-hero-inner">
     <span class="tag tag-yellow">Contact</span>
-    <h1>Demandez votre devis gratuit</h1>
-    <p>Réponse sous 48h. Programme personnalisé. Partout en France.</p>
+    <h1>Passez à l'action : votre entreprise mérite une santé au top !</h1>
+    <p>Besoin d'informations complémentaires ?</p>
+    <p>Passez à l'action dès maintenant : complétez ce formulaire et <strong>recevez une réponse</strong> <span class="hl-pill">sous 48h.</span></p>
+    <div class="page-hero-meta">
+      <span class="meta-yellow"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15.5 14"></polyline></svg> Réponse sous 48h</span>
+      <span class="meta-teal"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6.5-8 12-8 12s-8-5.5-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="2.8"></circle></svg> Partout en France</span>
+      <span class="meta-orange">✓ Devis 100% gratuit</span>
+    </div>
   </div>
 </section>
 
 <section class="bg-cream">
   <div class="wrap contact-grid">
     <div>
-      <div class="info-card">
-        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <div>
-          <p class="label">Téléphone</p>
-          <a href="tel:0631197769">06 31 19 77 69</a>
+      <div class="info-panel">
+        <p class="eyebrow">Nos coordonnées</p>
+        <img src="logo-uptomove-web.png" alt="UP TO MOVE" class="panel-logo">
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Kinésithérapeutes en entreprise</div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6.5-8 12-8 12s-8-5.5-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="2.8"></circle></svg> 41 rue Juge, 75015 Paris</div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:0631197769">06 31 19 77 69</a></div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg> <a href="mailto:info@uptomove.fr">info@uptomove.fr</a></div>
+        <div class="panel-social">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Vidéo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></a>
         </div>
-      </div>
-      <div class="info-card">
-        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
-        <div>
-          <p class="label">Email</p>
-          <a href="mailto:physio.celine@gmail.com">physio.celine@gmail.com</a>
-        </div>
-      </div>
-      <div class="info-card teal">
-        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <div>
-          <p class="label">Délai de réponse</p>
-          <p class="val">Sous 48h ouvrées</p>
-        </div>
-      </div>
-      <div class="info-card teal">
-        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6.5-8 12-8 12s-8-5.5-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="2.8"></circle></svg>
-        <div>
-          <p class="label">Zone d'intervention</p>
-          <p class="val">Partout en France · Présentiel et distanciel</p>
-        </div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Réponse sous 48h ouvrées</div>
+        <div class="info-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Partout en France · Présentiel et distanciel</div>
+        <p class="hours">Du <b>lundi</b> au <b>vendredi</b> de <b>8h</b> à <b>19h</b></p>
       </div>
       <div class="qualiopi-mini">
-        <p class="check">✓ Qualiopi</p>
+        <img src="logo-qualiopi.png" alt="Qualiopi — processus certifié — République française" class="qualiopi-mini-logo">
         <p class="sub">Actions de formation (L.6313-1 - 1°)</p>
+        <a href="certificat-qualiopi-uptomove.pdf" target="_blank" rel="noopener" class="btn btn-orange">Télécharger l'attestation</a>
       </div>
     </div>
 
     <div class="form-card">
       <h2>Décrivez votre besoin</h2>
-      <form action="mailto:physio.celine@gmail.com" method="post" enctype="text/plain" aria-label="Formulaire de contact">
+      <p class="form-lead">Passez à l'action dès maintenant : complétez ce formulaire et <strong>recevez immédiatement</strong> <span class="hl-pill">notre catalogue.</span></p>
+      <form id="contactForm" action="https://formspree.io/f/mzepvaro" method="POST" aria-label="Formulaire de contact">
+        <input type="hidden" name="_subject" value="Nouvelle demande de devis — UP TO MOVE">
         <div class="form-grid2">
           <div class="form-field">
-            <label for="prenom">Prénom *</label>
+            <label for="prenom">Prénom <span class="req">*</span></label>
             <input id="prenom" name="prenom" type="text" required autocomplete="given-name" placeholder="Votre prénom">
           </div>
           <div class="form-field">
-            <label for="nom">Nom *</label>
+            <label for="nom">Nom <span class="req">*</span></label>
             <input id="nom" name="nom" type="text" required autocomplete="family-name" placeholder="Votre nom">
           </div>
         </div>
         <div class="form-grid2">
           <div class="form-field">
-            <label for="email">Email professionnel *</label>
+            <label for="email">Email professionnel <span class="req">*</span></label>
             <input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@entreprise.fr">
           </div>
           <div class="form-field">
@@ -198,7 +220,7 @@
         </div>
         <div class="form-grid2">
           <div class="form-field">
-            <label for="entreprise">Entreprise *</label>
+            <label for="entreprise">Entreprise <span class="req">*</span></label>
             <input id="entreprise" name="entreprise" type="text" required autocomplete="organization" placeholder="Nom de votre entreprise">
           </div>
           <div class="form-field">
@@ -215,6 +237,10 @@
           </div>
         </div>
         <div class="form-field full">
+          <label for="localisation">Localisation</label>
+          <input id="localisation" name="localisation" type="text" autocomplete="address-level2" placeholder="Ville ou région de votre entreprise">
+        </div>
+        <div class="form-field full">
           <label for="effectif">Effectif concerné</label>
           <select id="effectif" name="effectif">
             <option value="">Sélectionner...</option>
@@ -226,11 +252,12 @@
           </select>
         </div>
         <div class="form-field full">
-          <label for="message">Votre besoin *</label>
+          <label for="message">Votre besoin <span class="req">*</span></label>
           <textarea id="message" name="message" required placeholder="Décrivez votre situation : secteur d'activité, type de postes, problématiques rencontrées, formations souhaitées..."></textarea>
         </div>
-        <button type="submit" class="btn btn-orange btn-full">Envoyer ma demande de devis</button>
+        <button type="submit" class="btn btn-orange btn-full" id="contactSubmitBtn">Envoyer et recevoir le catalogue</button>
         <p class="form-note">Réponse sous 48h · Devis personnalisé gratuit · Aucun engagement</p>
+        <p class="form-status" id="contactFormStatus"></p>
       </form>
     </div>
   </div>
@@ -272,7 +299,7 @@
     <div>
       <h4>Ressources</h4>
       <ul>
-        <li><a href="#">Certificat Qualiopi</a></li>
+        <li><a href="certificat-qualiopi-uptomove.pdf" target="_blank" rel="noopener">Certificat Qualiopi</a></li>
         <li><a href="mentions-legales.html">Mentions légales</a></li>
         <li><a href="#">Plan du site</a></li>
       </ul>
@@ -297,10 +324,64 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('section, .info-card, .form-card').forEach(el => {
+  document.querySelectorAll('section, .info-panel, .qualiopi-mini, .form-card').forEach(el => {
     el.classList.add('fade-up');
     observer.observe(el);
   });
+
+  // Formulaire de contact — envoi via Formspree + téléchargement automatique du catalogue
+  var form = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('contactSubmitBtn');
+  var status = document.getElementById('contactFormStatus');
+  var catalogueFile = 'catalogue-uptomove-2026.pdf';
+  var catalogueDownloadName = 'catalogue formations uptomove 2026.pdf';
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = '';
+
+      var emailInput = document.getElementById('email');
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput || !emailPattern.test(emailInput.value.trim())) {
+        status.className = 'form-status error';
+        status.textContent = 'Veuillez entrer une adresse email valide (exemple : nom@domaine.fr).';
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          status.className = 'form-status success';
+          status.textContent = 'Merci ! Votre demande est envoyée, le catalogue se télécharge...';
+          var link = document.createElement('a');
+          link.href = catalogueFile;
+          link.download = catalogueDownloadName;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          submitBtn.textContent = 'Envoyer et recevoir le catalogue';
+          submitBtn.disabled = false;
+          form.reset();
+        } else {
+          throw new Error('form error');
+        }
+      }).catch(function () {
+        status.className = 'form-status error';
+        status.textContent = "Une erreur est survenue. Réessayez ou écrivez-nous à info@uptomove.fr.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Envoyer et recevoir le catalogue';
+      });
+    });
+  }
 });
 </script>
 </body>
