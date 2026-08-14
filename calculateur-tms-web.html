@@ -1160,6 +1160,7 @@ function ouvrirGateTelechargement(){
   var form=document.getElementById('dlGateForm');
   var submitBtn=document.getElementById('dlGateSubmitBtn');
   var status=document.getElementById('dlGateStatus');
+  var entInputSync=document.getElementById('dl-entreprise');
 
   function closeGateModal(){ if(modal) modal.classList.remove('open'); }
   if(closeBtn) closeBtn.addEventListener('click', closeGateModal);
@@ -1191,6 +1192,7 @@ function ouvrirGateTelechargement(){
         if(response.ok){
           status.className='form-status success';
           status.textContent='Merci ! Votre téléchargement démarre...';
+          if(entInputSync && entInputSync.value.trim()) lastCalc.entreprise=entInputSync.value.trim();
           telechargerPDF();
           submitBtn.textContent='Télécharger mon rapport PDF';
           submitBtn.disabled=false;
@@ -1240,25 +1242,28 @@ function telechargerPDF(){
   function setFill(col){ doc.setFillColor(col[0],col[1],col[2]); }
   function setText(col){ doc.setTextColor(col[0],col[1],col[2]); }
 
-  /* ===== TITLE BAND (bandeau navy, comme le hero du site) ===== */
+  /* ===== BANDEAU TITRE (navy, logo + date + titre + rapport + entreprise) ===== */
   doc.setFont('helvetica','bold'); doc.setFontSize(15.5);
   var titleLines=doc.splitTextToSize('Coût caché annuel des Troubles Musculo-Squelettiques',CW-8);
   var titleLH=6.3;
-  var bandH=10+4+ (titleLines.length*titleLH) +7+5+9;
+  var LOGO_TOP=6, LOGO_H=18, GAP_LOGO_TITLE=8, GAP_TITLE_RAPPORT=4, GAP_RAPPORT_CO=7, GAP_CO_BADGE=8, BAND_BOTTOM_PAD=9;
+  var bandH=LOGO_TOP+LOGO_H+GAP_LOGO_TITLE + (titleLines.length*titleLH) + GAP_TITLE_RAPPORT + GAP_RAPPORT_CO + GAP_CO_BADGE + BAND_BOTTOM_PAD;
   setFill(NAVY); doc.rect(0,0,PW,bandH,'F');
-  var ty=9;
-  doc.setFont('helvetica','bold'); doc.setFontSize(8.5); setText(YELLOW);
-  doc.text('UP TO MOVE — ANALYSE PERSONNALISÉE',MX,ty);
-  ty+=6.5;
+
+  try{ var tlw=LOGO_H*LOGO_RATIO; doc.addImage(LOGO,'PNG',MX,LOGO_TOP,tlw,LOGO_H); }catch(e){}
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); setText([190,196,220]);
+  doc.text(String(c.date||''),PW-MX,LOGO_TOP+LOGO_H/2+1.5,{align:'right'});
+
+  var ty=LOGO_TOP+LOGO_H+GAP_LOGO_TITLE;
   doc.setFont('helvetica','bold'); doc.setFontSize(15.5); setText(WHITE);
   titleLines.forEach(function(line){ doc.text(line,MX,ty); ty+=titleLH; });
-  ty+=1.5;
+  ty+=GAP_TITLE_RAPPORT;
+  doc.setFont('helvetica','bold'); doc.setFontSize(8.5); setText(TEAL);
+  doc.text('RAPPORT DE DIAGNOSTIC TMS',MX,ty);
+  ty+=GAP_RAPPORT_CO;
   doc.setFont('helvetica','bold'); doc.setFontSize(13); setText(YELLOW);
   doc.text(String(c.entreprise||''),MX,ty);
-  ty+=6;
-  doc.setFont('helvetica','normal'); doc.setFontSize(9); setText([190,196,220]);
-  doc.text(String(c.date||''),MX,ty);
-  ty+=7;
+  ty+=GAP_CO_BADGE;
   var badgeLabel=rl[c.risque]||'—';
   var badgeCol=rc[c.risque]||ORANGE;
   doc.setFont('helvetica','bold'); doc.setFontSize(9.5);
@@ -1266,16 +1271,13 @@ function telechargerPDF(){
   setFill(badgeCol); doc.roundedRect(MX,ty-4.8,badgeW,7,3.5,3.5,'F');
   setText(WHITE); doc.text(badgeLabel,MX+badgeW/2,ty,{align:'center'});
 
-  y=bandH;
+  /* liseré tricolore en bas du bandeau */
+  var stripeW=PW/3;
+  setFill(ORANGE); doc.rect(0,bandH-1.4,stripeW,1.4,'F');
+  setFill(YELLOW); doc.rect(stripeW,bandH-1.4,stripeW,1.4,'F');
+  setFill(TEAL); doc.rect(stripeW*2,bandH-1.4,PW-stripeW*2,1.4,'F');
 
-  /* ===== HEADER (bandeau clair, logo, comme le site) ===== */
-  setFill(LIGHTBG); doc.rect(0,y,PW,24,'F');
-  try{ var lh=11,lw=lh*LOGO_RATIO; doc.addImage(LOGO,'PNG',MX,y+6.5,lw,lh); }catch(e){}
-  doc.setFont('helvetica','bold'); doc.setFontSize(8); setText(NAVY);
-  doc.text('RAPPORT DE DIAGNOSTIC TMS',PW-MX,y+13,{align:'right'});
-  y+=24;
-  setFill(YELLOW); doc.rect(0,y,PW,1.4,'F');
-  y+=1.4+9;
+  y=bandH+9;
 
   /* ===== MÉTRIQUES ===== */
   ensure(24);
@@ -1352,7 +1354,13 @@ function telechargerPDF(){
   /* ===== FORMATIONS RECOMMANDÉES ===== */
   var formations=c.formationsList||[];
   if(formations.length){
-    ensure(10);
+    /* réserve le titre de section + la première carte ensemble pour ne jamais couper la section en haut de page */
+    doc.setFont('helvetica','bold'); doc.setFontSize(9.5);
+    var f0TitleLn=doc.splitTextToSize(formations[0].titre||'',CW-12);
+    doc.setFont('helvetica','normal'); doc.setFontSize(8.3);
+    var f0DescLn=doc.splitTextToSize(formations[0].desc||'',CW-12);
+    var f0CardH=6+5.5+2+f0TitleLn.length*4.1+1.5+f0DescLn.length*3.5+3+4+4;
+    ensure(10+f0CardH+4);
     doc.setFont('helvetica','bold'); doc.setFontSize(9.5); setText(ORANGE);
     doc.text('FORMATIONS UP TO MOVE RECOMMANDÉES POUR VOTRE PROFIL',MX,y);
     setFill(ORANGE); doc.rect(MX,y+1.5,CW,0.6,'F');
@@ -1363,7 +1371,7 @@ function telechargerPDF(){
       var titleLn=doc.splitTextToSize(f.titre||'',CW-12);
       doc.setFont('helvetica','normal'); doc.setFontSize(8.3);
       var descLn=doc.splitTextToSize(f.desc||'',CW-12);
-      var cardH=6+5.5+2+titleLn.length*4.1+1.5+descLn.length*3.5+4;
+      var cardH=6+5.5+2+titleLn.length*4.1+1.5+descLn.length*3.5+3+4+4;
       ensure(cardH+4);
       setFill(CREAM); doc.roundedRect(MX,y,CW,cardH,2.5,2.5,'F');
       var cy=y+4;
@@ -1377,6 +1385,10 @@ function telechargerPDF(){
       cy+=1;
       doc.setFont('helvetica','normal'); doc.setFontSize(8.3); setText(GRAYTXT);
       descLn.forEach(function(l){ doc.text(l,MX+5,cy); cy+=3.5; });
+      cy+=3;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8.3); setText(ORANGE);
+      var linkUrl='https://uptomove-site.vercel.app/'+String(f.url||'formations.html');
+      doc.textWithLink('Voir la formation »',MX+5,cy,{url:linkUrl});
       y+=cardH+4;
     });
     y+=3;
@@ -1445,10 +1457,13 @@ function telechargerPDF(){
     if(pg>1){
       /* en-tête clair répété (comme le site) sur les pages 2+ */
       setFill(LIGHTBG); doc.rect(0,0,PW,16,'F');
-      try{ var hlh=8.5,hlw=hlh*LOGO_RATIO; doc.addImage(LOGO,'PNG',MX,3.2,hlw,hlh); }catch(e){}
+      try{ var hlh=10,hlw=hlh*LOGO_RATIO; doc.addImage(LOGO,'PNG',MX,2.6,hlw,hlh); }catch(e){}
       doc.setFont('helvetica','bold'); doc.setFontSize(7.5); setText(NAVY);
       doc.text('RAPPORT DE DIAGNOSTIC TMS — '+String(c.entreprise||''),PW-MX,9.5,{align:'right'});
-      setFill(YELLOW); doc.rect(0,15.3,PW,0.7,'F');
+      var hStripeW=PW/3;
+      setFill(ORANGE); doc.rect(0,15.3,hStripeW,0.7,'F');
+      setFill(YELLOW); doc.rect(hStripeW,15.3,hStripeW,0.7,'F');
+      setFill(TEAL); doc.rect(hStripeW*2,15.3,PW-hStripeW*2,0.7,'F');
     }
 
     /* pied de page navy répété sur toutes les pages */
