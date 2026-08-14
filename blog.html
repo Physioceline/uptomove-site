@@ -195,6 +195,7 @@
     .article-grid { grid-template-columns:1fr; }
     .footer-grid { grid-template-columns:1fr 1fr; }
     .blog-search-box { max-width:100%; }
+    #newsletter-form { flex-direction: column; }
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns:1fr; }
@@ -486,13 +487,70 @@
 
     <p class="blog-empty" id="blog-empty">Aucun article ne correspond à cette recherche. Essayez un autre mot-clé.</p>
 
-    <div class="newsletter">
-      <p>Restez informé des évolutions réglementaires TMS</p>
-      <a href="index.html#newsletter" class="btn btn-orange">S'inscrire à la newsletter</a>
-    </div>
-
   </div>
 </section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" style="background:#F7F6F2; padding:80px 52px; font-family:'Nunito',sans-serif; text-align:center; border-top:1px solid #E8E6E0;">
+  <div style="max-width:600px; margin:0 auto;">
+    <h2 style="font-family:'Encode Sans Compressed',sans-serif; font-weight:800; font-size:36px; color:#1E2952; letter-spacing:-0.5px; margin:0 0 12px;">
+      Newsletter <em style="font-style:normal; color:#FF914D;">UP TO MOVE</em>
+    </h2>
+    <p style="font-size:15px; color:#6B7280; margin:0 0 32px; font-weight:300;">
+      S'inscrire ici pour rester informé des actualités TMS, prévention et QVCT.
+    </p>
+    <form id="newsletter-form" action="https://formspree.io/f/xwleqbzy" method="POST" style="display:flex; gap:12px; max-width:480px; margin:0 auto;">
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Votre email"
+        style="flex:1; padding:14px 20px; border:1.5px solid #E8E6E0; border-radius:100px; font-size:15px; font-family:'Nunito',sans-serif; outline:none; color:#1E2952;"
+        onfocus="this.style.borderColor='#2EC4B6'"
+        onblur="this.style.borderColor='#E8E6E0'"
+      >
+      <button
+        type="submit"
+        style="background:#FF914D; color:#fff; font-family:'Encode Sans Compressed',sans-serif; font-weight:700; font-size:15px; padding:14px 28px; border-radius:100px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s;"
+        onmouseover="this.style.background='#e07a38'"
+        onmouseout="this.style.background='#FF914D'"
+      >
+        Confirmer
+      </button>
+    </form>
+    <p id="newsletter-msg" style="font-size:13px; margin:14px 0 0; min-height:18px;"></p>
+  </div>
+</section>
+<script>
+  (function() {
+    var form = document.getElementById('newsletter-form');
+    var msg = document.getElementById('newsletter-msg');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      msg.style.color = '#6B7280';
+      msg.textContent = 'Envoi en cours…';
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          msg.style.color = '#2EC4B6';
+          msg.textContent = 'Merci ! Votre inscription est bien prise en compte.';
+          form.reset();
+        } else {
+          msg.style.color = '#EF4444';
+          msg.textContent = 'Une erreur est survenue, merci de réessayer.';
+        }
+      }).catch(function() {
+        msg.style.color = '#EF4444';
+        msg.textContent = 'Une erreur est survenue, merci de réessayer.';
+      });
+    });
+  })();
+</script>
 
 <footer>
   <div class="footer-grid">
