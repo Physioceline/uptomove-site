@@ -1398,9 +1398,8 @@
 <div class="modal-overlay" id="catalogueModal">
   <div class="modal-box">
     <button type="button" class="modal-close" id="closeCatalogueForm" aria-label="Fermer">✕</button>
-    <h3>Recevez le catalogue des formations</h3>
-    <p class="modal-sub">Remplissez ce formulaire pour débloquer le téléchargement du catalogue complet (PDF, 2 Mo).</p>
-    <form id="catalogueForm" action="https://formspree.io/f/xjgnazjw" method="POST">
+    <h3>Complétez le formulaire et recevez le catalogue de formations.</h3>
+    <form id="catalogueForm" action="https://formspree.io/f/xgawzyql" method="POST">
       <div class="form-row">
         <div class="form-field">
           <label for="cat-prenom">Prénom</label>
@@ -1411,20 +1410,32 @@
           <input type="text" id="cat-nom" name="nom" required>
         </div>
       </div>
-      <div class="form-field">
-        <label for="cat-email">Email professionnel</label>
-        <input type="email" id="cat-email" name="email" required>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="cat-fonction">Votre fonction</label>
+          <input type="text" id="cat-fonction" name="fonction" required>
+        </div>
+        <div class="form-field">
+          <label for="cat-entreprise">Entreprise</label>
+          <input type="text" id="cat-entreprise" name="entreprise" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="cat-email">Email</label>
+          <input type="email" id="cat-email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="cat-telephone">Téléphone</label>
+          <input type="tel" id="cat-telephone" name="telephone" required>
+        </div>
       </div>
       <div class="form-field">
-        <label for="cat-entreprise">Entreprise</label>
-        <input type="text" id="cat-entreprise" name="entreprise" required>
-      </div>
-      <div class="form-field">
-        <label for="cat-telephone">Téléphone (optionnel)</label>
-        <input type="tel" id="cat-telephone" name="telephone">
+        <label for="cat-localisation">Localisation</label>
+        <input type="text" id="cat-localisation" name="localisation" required>
       </div>
       <input type="hidden" name="_subject" value="Nouvelle demande de catalogue — UP TO MOVE">
-      <button type="submit" class="btn btn-orange btn-full" id="catalogueSubmitBtn">Recevoir le catalogue</button>
+      <button type="submit" class="btn btn-orange btn-full" id="catalogueSubmitBtn">Envoyer</button>
       <p class="form-note">En soumettant ce formulaire, vous acceptez d'être recontacté(e) par UP TO MOVE au sujet de nos formations. Vos données ne sont jamais partagées avec des tiers.</p>
       <p class="form-status" id="catalogueFormStatus"></p>
     </form>
@@ -1513,7 +1524,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('catalogueForm');
   const submitBtn = document.getElementById('catalogueSubmitBtn');
   const status = document.getElementById('catalogueFormStatus');
-  const catalogueFile = 'catalogue-formations-uptomove-2026.pdf';
+  const catalogueFile = 'catalogue-uptomove-2026.pdf';
+  const catalogueDownloadName = 'catalogue formations uptomove 2026.pdf';
 
   function openModal() { modal.classList.add('open'); }
   function closeModal() { modal.classList.remove('open'); }
@@ -1540,7 +1552,7 @@ document.addEventListener('DOMContentLoaded', function () {
           status.textContent = 'Merci ! Le téléchargement démarre...';
           const link = document.createElement('a');
           link.href = catalogueFile;
-          link.download = catalogueFile;
+          link.download = catalogueDownloadName;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
