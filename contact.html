@@ -137,6 +137,7 @@
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns:1fr; }
+    .keep-line { white-space:normal; }
   }
 </style>
 </head>
@@ -267,6 +268,48 @@
     </div>
   </div>
 </section>
+
+<!-- Bandeau clients nommés -->
+<div style="background:#fff; padding:36px 0; border-top:1px solid #E8E6E0; border-bottom:1px solid #E8E6E0; overflow:hidden;">
+  <style>
+    .bc-row { display:flex; align-items:center; }
+    .bc-label { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#9CA3AF; white-space:nowrap; padding:0 48px; flex-shrink:0; }
+    .bc-sep { width:1px; height:40px; background:#E8E6E0; flex-shrink:0; }
+    .bc-overflow { flex:1; overflow:hidden; }
+    .bc-track {
+      display:flex; align-items:center; gap:80px;
+      width:max-content;
+      animation: bc-scroll 12s linear infinite;
+    }
+    .bc-track:hover { animation-play-state: paused; }
+    .bc-track img { height:55px; width:auto; object-fit:contain; flex-shrink:0; padding: 0 20px; }
+    @keyframes bc-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (max-width: 900px) {
+      .bc-label { padding:0 24px; font-size:11px; }
+    }
+  </style>
+  <div class="bc-row">
+    <span class="bc-label">Ils nous font confiance</span>
+    <div class="bc-sep"></div>
+    <div class="bc-overflow">
+      <div class="bc-track">
+        <!-- Set 1 -->
+        <img src="logo-daiichi-sankyo.png" alt="Daiichi-Sankyo">
+        <img src="logo-groupe-vsf.png" alt="Groupe VSF">
+        <img src="logo-chavigny.png" alt="Groupe Chavigny">
+        <img src="logo-ratp.png" alt="RATP">
+        <!-- Set 2 (clone pour boucle seamless) -->
+        <img src="logo-daiichi-sankyo.png" alt="Daiichi-Sankyo">
+        <img src="logo-groupe-vsf.png" alt="Groupe VSF">
+        <img src="logo-chavigny.png" alt="Groupe Chavigny">
+        <img src="logo-ratp.png" alt="RATP">
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-grid">
