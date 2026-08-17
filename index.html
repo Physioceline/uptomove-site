@@ -321,8 +321,11 @@
   /* Nav */
   .hero-nav { flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 36px; row-gap: 10px; }
   .hero-logo { height: 72px; }
-  .hero-nav-links { gap: 10px 14px; row-gap: 10px; }
+  .hero-nav-links { flex-wrap: wrap; gap: 10px 14px; row-gap: 10px; }
   .hero-nav-links a { font-size: 13px; }
+
+  /* Timeline BLOC 3 : masquer la ligne verticale + les points (mise en page 2 colonnes uniquement) */
+  .b3-line, .b3-dot { display: none; }
 
   /* Hero */
   .hero h1 { font-size: 34px; letter-spacing: -0.5px; }
@@ -648,7 +651,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div style="position:relative;">
-        <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:#2EC4B6; transform:translateX(-50%);"></div>
+        <div class="b3-line" style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:#2EC4B6; transform:translateX(-50%);"></div>
 
         <!-- ÉTAPE 1 -->
         <div style="display:grid; grid-template-columns:1fr 1fr; min-height:200px; position:relative;">
@@ -664,7 +667,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
           </div>
           <div></div>
-          <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #2EC4B6; z-index:2;"></div>
+          <div class="b3-dot" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #2EC4B6; z-index:2;"></div>
         </div>
 
         <!-- ÉTAPE 2 -->
@@ -680,7 +683,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <li style="display:flex; align-items:flex-start; gap:8px; font-size:15px; color:#6B7280;"><span style="width:5px;height:5px;border-radius:50%;background:#FF914D;flex-shrink:0;margin-top:6px;"></span>Am&eacute;liorer le bien-&ecirc;tre et r&eacute;duire la p&eacute;nibilit&eacute;</li>
             </ul>
           </div>
-          <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #FF914D; z-index:2;"></div>
+          <div class="b3-dot" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #FF914D; z-index:2;"></div>
         </div>
 
         <!-- ÉTAPE 3 -->
@@ -696,7 +699,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
           </div>
           <div></div>
-          <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #1E2952; z-index:2;"></div>
+          <div class="b3-dot" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #1E2952; z-index:2;"></div>
         </div>
 
       </div>
