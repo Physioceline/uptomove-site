@@ -240,6 +240,13 @@
     .quicklinks { grid-template-columns:1fr; }
     details.program .prog-grid { grid-template-columns:1fr; }
     .footer-grid { grid-template-columns:1fr 1fr; }
+
+    /* Catalogue : empiler au lieu de déborder */
+    .catalogue-inner { flex-direction:column; text-align:center; gap:28px; }
+    .catalogue-cover { width:190px; margin:0 auto; }
+    .catalogue-text { min-width:0; width:100%; }
+    .catalogue-text p { max-width:100%; margin-left:auto; margin-right:auto; }
+    .catalogue-meta { justify-content:center; }
   }
   @media (max-width: 480px) {
     .footer-grid { grid-template-columns:1fr; }
