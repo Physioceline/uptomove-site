@@ -342,6 +342,13 @@
   .hero-nav-links li { width: 100%; }
   .hero-nav-links a { display: block; font-size: 15px; padding: 12px 10px; }
   .hero-nav-cta { display: block; text-align: center; }
+  .hero-nav-links .hero-nav-calc-link {
+    padding: 12px 10px !important; font-size: 15px !important;
+    border-radius: 8px !important; text-align: center;
+  }
+  .hero-nav-links .nav-dropdown { width: 100%; }
+  .hero-nav-links .nav-dropdown summary { display: flex; padding: 12px 10px; font-size: 15px; }
+  .hero-nav-links .nav-dropdown-panel { position: static; margin-top: 2px; }
   .nav-dropdown-panel { position: static; transform: none; background: #F7F6F2; box-shadow: none; margin-top: 4px; min-width: 0; }
 
   /* Timeline BLOC 3 : masquer la ligne verticale + les points (mise en page 2 colonnes uniquement) */
@@ -552,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <li><a href="clients.html">Clients</a></li>
       <li class="nav-dropdown"><details><summary>À propos</summary><ul class="nav-dropdown-panel"><li><a href="apropos.html">Qui sommes-nous ?</a></li><li><a href="faq.html">FAQ</a></li></ul></details></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="calculateur-tms-web.html" style="background:#FFDE59;color:#1E2952 !important;padding:8px 20px;border-radius:7px;font-weight:700 !important;font-size:13px !important;">Calculateur TMS</a></li>
+      <li><a href="calculateur-tms-web.html" class="hero-nav-calc-link" style="background:#FFDE59;color:#1E2952 !important;padding:8px 20px;border-radius:7px;font-weight:700 !important;font-size:13px !important;">Calculateur TMS</a></li>
       <li><a href="contact.html" class="hero-nav-cta">Contact</a></li>
     </ul>
   </nav>
