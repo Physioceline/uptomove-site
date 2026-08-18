@@ -43,6 +43,11 @@
   .site-nav-links > li > a[aria-current="page"] { color:#FF914D; border-bottom:2px solid #FF914D; padding-bottom:3px; }
   .nav-pill-yellow { background:#FFDE59; color:#1E2952 !important; padding:8px 20px; border-radius:7px; font-weight:700 !important; font-size:13px !important; }
   .nav-pill-orange { background:#FF914D; color:#fff !important; padding:8px 18px; border-radius:7px; font-weight:700 !important; font-size:13px !important; }
+  .site-nav-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; }
+  .site-nav-toggle span { display:block; width:24px; height:2.5px; background:#1E2952; border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+  .site-nav-toggle.is-active span:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
+  .site-nav-toggle.is-active span:nth-child(2) { opacity:0; }
+  .site-nav-toggle.is-active span:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
 
   .nav-dropdown { position:relative; }
   .nav-dropdown summary { cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#1E2952; font-weight:700; }
@@ -112,8 +117,20 @@
   @media (prefers-reduced-motion: reduce) { .fade-up { transition:none; opacity:1; transform:none; } }
 
   @media (max-width: 900px) {
-    .site-nav { padding:18px 24px; flex-wrap:wrap; gap:14px; }
-    .site-nav-links { flex-wrap:wrap; justify-content:center; gap:14px; }
+    .site-nav { padding:14px 20px; flex-wrap:nowrap; justify-content:space-between; }
+    .site-nav-toggle { display:flex; }
+    .site-nav-links {
+      display:none; position:absolute; top:calc(100% + 12px); left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:4px;
+      background:#fff; border-radius:14px; box-shadow:0 20px 44px rgba(30,41,82,0.18);
+      padding:14px; z-index:200;
+    }
+    .site-nav-links.open { display:flex; }
+    .site-nav-links li { width:100%; }
+    .site-nav-links a { display:block; font-size:15px; padding:12px 10px; }
+    .nav-pill-yellow, .nav-pill-orange { display:block; text-align:center; padding:12px 10px !important; font-size:15px !important; border-radius:8px !important; }
+    .nav-dropdown { width:100%; }
+    .nav-dropdown summary { display:flex; padding:12px 10px; font-size:15px; }
     .article-hero, section { padding-left:24px; padding-right:24px; }
     .footer-grid { grid-template-columns:1fr 1fr; }
   }
@@ -128,7 +145,10 @@
 
 <nav class="site-nav">
   <a href="index.html"><img src="logo-uptomove-web.png" alt="UP TO MOVE" class="nav-logo"></a>
-  <ul class="site-nav-links">
+  <button type="button" class="site-nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="siteNavLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="site-nav-links" id="siteNavLinks">
     <li><a href="formations.html">Formations</a></li>
     <li><a href="clients.html">Clients</a></li>
     <li class="nav-dropdown"><details><summary>À propos</summary><ul class="nav-dropdown-panel"><li><a href="apropos.html">Qui sommes-nous ?</a></li><li><a href="faq.html">FAQ</a></li></ul></details></li>
@@ -255,6 +275,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
 });
+</script>
+<script>
+// Menu mobile (hamburger 3 lignes)
+(function () {
+  var toggle = document.querySelector('.site-nav-toggle');
+  var links = document.querySelector('.site-nav-links');
+  if (!toggle || !links) return;
+  function closeMenu() {
+    links.classList.remove('open');
+    toggle.classList.remove('is-active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  toggle.addEventListener('click', function () {
+    var isOpen = links.classList.toggle('open');
+    toggle.classList.toggle('is-active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) closeMenu();
+  });
+})();
 </script>
 <script src="cookie-consent.js"></script>
 </body>
