@@ -75,9 +75,9 @@
 </script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
   .stat-finale:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(30,41,82,0.32); }
-  body { font-family: 'Nunito', sans-serif; background: #EFEFEF; }
+  body { font-family: 'Nunito', sans-serif; background: #EFEFEF; overflow-x: hidden; }
 
   /* ── BLOC 1 : HERO ── */
   .hero {
@@ -329,7 +329,7 @@
   [style*="grid-template-columns"] { gap: 20px !important; }
 
   /* Nav : menu hamburger (3 lignes) */
-  .hero-nav { flex-wrap: nowrap; justify-content: space-between; margin-bottom: 36px; position:sticky; top:0; z-index:300; background:#F7F6F2; padding:10px 24px; margin-left:-24px; margin-right:-24px; width:calc(100% + 48px); }
+  .hero-nav { flex-wrap: nowrap; justify-content: space-between; margin-bottom: 36px; position:sticky; top:0; z-index:300; background:#F7F6F2; }
   .hero-logo { height: 60px; }
   .hero-nav-toggle { display: flex; }
   .hero-nav-links {
