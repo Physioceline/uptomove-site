@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/a-propos", "destination": "/apropos", "permanent": true }
+    { "source": "/a-propos", "destination": "/apropos", "permanent": true },
+    { "source": "/nos-clients", "destination": "/clients", "permanent": true }
   ]
 }
