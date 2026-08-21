@@ -4,6 +4,7 @@
     { "source": "/a-propos", "destination": "/apropos", "permanent": true },
     { "source": "/nos-clients", "destination": "/clients", "permanent": true },
     { "source": "/calculateur-tms", "destination": "/calculateur-tms-web", "permanent": true },
-    { "source": "/blog/mots-cles/:tag*", "destination": "/blog", "permanent": true }
+    { "source": "/blog/mots-cles/:tag*", "destination": "/blog", "permanent": true },
+    { "source": "/prevention-tms-postes-sedentaires", "destination": "/formations#sedentaires", "permanent": true }
   ]
 }
