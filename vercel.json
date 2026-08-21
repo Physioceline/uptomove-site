@@ -6,6 +6,7 @@
     { "source": "/calculateur-tms", "destination": "/calculateur-tms-web", "permanent": true },
     { "source": "/blog/mots-cles/:tag*", "destination": "/blog", "permanent": true },
     { "source": "/prevention-tms-postes-sedentaires", "destination": "/formations#sedentaires", "permanent": true },
-    { "source": "/prevention-tms-postes-manuels-non-sedentaires", "destination": "/formations#manutention", "permanent": true }
+    { "source": "/prevention-tms-postes-manuels-non-sedentaires", "destination": "/formations#manutention", "permanent": true },
+    { "source": "/contact-up-to-move-formations-sante-intra-entreprise", "destination": "/contact", "permanent": true }
   ]
 }
