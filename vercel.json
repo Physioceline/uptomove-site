@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "redirects": [
     { "source": "/a-propos", "destination": "/apropos", "permanent": true }
   ]
