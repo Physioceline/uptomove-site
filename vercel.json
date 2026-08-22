@@ -8,6 +8,27 @@
     { "source": "/prevention-tms-postes-sedentaires", "destination": "/formations#sedentaires", "permanent": true },
     { "source": "/prevention-tms-postes-manuels-non-sedentaires", "destination": "/formations#manutention", "permanent": true },
     { "source": "/contact-up-to-move-formations-sante-intra-entreprise", "destination": "/contact", "permanent": true },
-    { "source": "/blog/articles/vos-ateliers-tms-conformes-et-tracables-des-2026", "destination": "/blog-ateliers-tms-conformes-tracables-2026", "permanent": true }
+    { "source": "/blog/articles/vos-ateliers-tms-conformes-et-tracables-des-2026", "destination": "/blog-ateliers-tms-conformes-tracables-2026", "permanent": true },
+    { "source": "/blog/articles/tu-veux-finir-ta-carriere-sans-dos-rond-regarde-ce-nouvel-exercice-rien-que-pour-toi", "destination": "/blog-exercice-dos-rond-carriere", "permanent": true },
+    { "source": "/blog/articles/5-gestes-manageriaux-qui-previennent-les-tms-et-comment-tms-et-rps-se-nourrissent-mutuellement", "destination": "/blog-5-gestes-manageriaux-tms-rps", "permanent": true },
+    { "source": "/blog/articles/de-largent-sur-votre-dos", "destination": "/blog-argent-sur-votre-dos", "permanent": true },
+    { "source": "/blog/articles/arrets-maladie-plafonnes-au-1er-septembre-2026-ce-que-ca-change-pour-les-entreprises-face-aux-tms", "destination": "/blog-arrets-maladie-plafonnes-septembre-2026", "permanent": true },
+    { "source": "/blog/articles/les-cervicales-a-nous-deux", "destination": "/blog-cervicales-a-nous-deux", "permanent": true },
+    { "source": "/blog/articles/lexercice-parfait-pour-ton-haut-du-dos", "destination": "/blog-exercice-haut-du-dos", "permanent": true },
+    { "source": "/blog/articles/acte-ii-une-gourde-contre-le-dos-voute", "destination": "/blog-gourde-dos-voute-acte-2", "permanent": true },
+    { "source": "/blog/articles/hernie-discale-comprendre-et-prevenir-les-douleurs-du-dos", "destination": "/blog-hernie-discale", "permanent": true },
+    { "source": "/blog/articles/en-entreprise-le-kine-ne-fait-pas-du-bien-etre-il-fait-de-la-prevention-primaire", "destination": "/blog-kine-prevention-primaire", "permanent": true },
+    { "source": "/blog/articles/mal-au-dos-au-bureau-que-faire-dans-les-48-premieres-heures", "destination": "/blog-mal-au-dos-bureau-48h", "permanent": true },
+    { "source": "/blog/articles/passeport-de-prevention-tms-ce-que-vous-devez-savoir-avant-octobre-2026", "destination": "/blog-passeport-prevention-tms-2026", "permanent": true },
+    { "source": "/blog/articles/posture-incorrect-a-surtout-reproduire", "destination": "/blog-posture-incorrecte", "permanent": true },
+    { "source": "/blog/articles/pst-5-2026-2030-ce-qui-va-changer-pour-votre-entreprise", "destination": "/blog-pst-5-2026-2030", "permanent": true },
+    { "source": "/blog/articles/pst-5-officiellement-lance-les-4-axes-strategiques-et-les-50-actions-a-connaitre", "destination": "/blog-pst5-lancement-officiel-2026", "permanent": true },
+    { "source": "/blog/articles/aujourdhui-on-va-soulager-la-raideur-en-bas-de-ton-dos", "destination": "/blog-raideur-bas-du-dos", "permanent": true },
+    { "source": "/blog/articles/reglementation-2026-passeport-de-prevention-sanctions-renforcees-et-papripact-ce-que-votre-entreprise-doit-faire-maintenant", "destination": "/blog-reglementation-2026-passeport-prevention", "permanent": true },
+    { "source": "/blog/articles/rentree-2026-tms-passeport-de-prevention-pst-5-ce-quil-faut-anticiper", "destination": "/blog-rentree-2026-tms-ce-quil-faut-anticiper", "permanent": true },
+    { "source": "/blog/articles/rh-responsables-qvt-et-dirigeants-ce-carrousel-est-pour-vous", "destination": "/blog-rh-qvt-dirigeants-carrousel", "permanent": true },
+    { "source": "/blog/articles/syndrome-du-canal-carpien-comprendre-prevenir-et-agir", "destination": "/blog-syndrome-canal-carpien", "permanent": true },
+    { "source": "/blog/articles/tms-et-migraines-un-lien-souvent-sous-estime", "destination": "/blog-tms-migraines", "permanent": true },
+    { "source": "/blog/articles/torticolis-et-douleurs-au-cou-au-travail-les-bons-reflexes", "destination": "/blog-torticolis-mal-au-cou-travail", "permanent": true }
   ]
 }
