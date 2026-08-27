@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos alliés santé au travail — UP TO MOVE</title>
+<meta name="description" content="UP TO MOVE s'associe à des alliés santé au travail complémentaires. Découvrez Move Break, l'assistant de micro-pauses bien-être intégré à Teams et Slack.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.uptomove.fr/partenaires">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UP TO MOVE">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Nos alliés santé au travail — UP TO MOVE">
+<meta property="og:description" content="UP TO MOVE s'associe à des alliés santé au travail complémentaires. Découvrez Move Break, l'assistant de micro-pauses bien-être intégré à Teams et Slack.">
+<meta property="og:url" content="https://www.uptomove.fr/partenaires">
+<meta property="og:image" content="https://uptomove-site.vercel.app/og-image-uptomove.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="405">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nos alliés santé au travail — UP TO MOVE">
+<meta name="twitter:description" content="UP TO MOVE s'associe à des alliés santé au travail complémentaires. Découvrez Move Break, l'assistant de micro-pauses bien-être intégré à Teams et Slack.">
+<meta name="twitter:image" content="https://uptomove-site.vercel.app/og-image-uptomove.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Compressed:wght@700;800;900&family=Josefin+Slab:wght@700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family:'Nunito', sans-serif; background: #EFEFEF; }
+  a { text-decoration: none; }
+
+  .site-nav { background:#F7F6F2; padding:10px 64px; display:flex; align-items:center; justify-content:space-between; }
+  .logo-word { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:22px; letter-spacing:-0.5px; }
+  .logo-word span:first-child { color:#1E2952; }
+  .logo-word span:last-child { color:#FF914D; }
+  .nav-logo { height:112px; width:auto; display:block; }
+  .site-nav-links { display:flex; gap:24px; align-items:center; list-style:none; justify-content:center; flex:1; }
+  .site-nav-links a { font-size:14px; color:#1E2952; font-weight:700; }
+  .site-nav-links a:hover { color:#FF914D; }
+  .site-nav-links > li > a[aria-current="page"] { color:#FF914D; border-bottom:2px solid #FF914D; padding-bottom:3px; }
+  .nav-pill-yellow { background:#FFDE59; color:#1E2952 !important; padding:8px 20px; border-radius:7px; font-weight:700 !important; font-size:13px !important; }
+  .nav-pill-orange { background:#FF914D; color:#fff !important; padding:8px 18px; border-radius:7px; font-weight:700 !important; font-size:13px !important; }
+  .site-nav-toggle { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; }
+  .site-nav-toggle span { display:block; width:24px; height:2.5px; background:#1E2952; border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+  .site-nav-toggle.is-active span:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
+  .site-nav-toggle.is-active span:nth-child(2) { opacity:0; }
+  .site-nav-toggle.is-active span:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
+
+  /* Dropdown "À propos" */
+  .nav-dropdown { position:relative; }
+  .nav-dropdown summary { cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#1E2952; font-weight:700; }
+  .nav-dropdown summary::-webkit-details-marker { display:none; }
+  .nav-dropdown summary:hover { color:#FF914D; }
+  .nav-dropdown-panel { list-style:none; position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%); background:#1E2952; border-radius:12px; min-width:190px; padding:6px; box-shadow:0 20px 40px rgba(30,41,82,0.25); z-index:80; }
+  .nav-dropdown-panel li + li { border-top:1px solid rgba(255,255,255,0.1); }
+  .nav-dropdown-panel a { display:inline-block; padding:12px 16px; color:#fff !important; font-size:13.5px; font-weight:600 !important; border-radius:8px; text-decoration:underline; text-decoration-color:#FF914D; text-decoration-thickness:2px; text-underline-offset:6px; }
+  .nav-dropdown-panel a:hover { background:rgba(255,255,255,0.08); color:#fff !important; }
+  @media (max-width: 900px) {
+    .nav-dropdown-panel { position:static; transform:none; width:100%; min-width:0; margin-top:8px; box-shadow:none; }
+  }
+
+  .page-hero { background:#1E2952; padding:64px; position:relative; overflow:hidden; }
+  .page-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; filter:brightness(0.6) saturate(0.85); }
+  .page-hero-overlay { position:absolute; inset:0; background:rgba(30,41,82,0.78); z-index:1; }
+  .page-hero-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; }
+  .tag { display:inline-block; font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:8px 20px; border-radius:100px; margin-bottom:20px; }
+  .tag-orange-solid { background:rgba(255,145,77,0.14); border:1px solid rgba(255,145,77,0.35); color:#FF914D; }
+  .page-hero h1 { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(2rem,4.2vw,3.2rem); line-height:1.1; color:#fff; letter-spacing:-1px; max-width:760px; margin-bottom:18px; }
+  .page-hero h1 .accent { color:#2EC4B6; }
+  .page-hero p { font-size:17px; color:rgba(255,255,255,0.7); font-weight:300; line-height:1.7; max-width:600px; }
+
+  section { padding: clamp(3rem,7vw,5.5rem) 64px; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  .bg-cream { background:#F7F6F2; }
+  .bg-white { background:#fff; }
+
+  .btn { display:inline-flex; align-items:center; gap:8px; font-family:'Encode Sans Compressed', sans-serif; font-weight:700; font-size:14px; padding:14px 26px; border-radius:8px; border:none; cursor:pointer; }
+  .btn-orange-solid { background:#FF914D; color:#fff; }
+  .btn-navy { background:#1E2952; color:#fff; }
+  .btn-white { background:#fff; color:#1E2952; }
+
+  /* ── Intro philosophie partenariats ── */
+  .partners-intro { text-align:center; max-width:720px; margin:0 auto 56px; }
+  .partners-intro h2 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:clamp(1.5rem,2.8vw,2rem); color:#1E2952; letter-spacing:-0.4px; margin-bottom:14px; }
+  .partners-intro p { color:#4B5563; font-size:15.5px; line-height:1.75; }
+
+  /* ── Carte partenaire ── */
+  .partner-card { background:#fff; border-radius:24px; overflow:hidden; box-shadow:0 20px 50px rgba(30,41,82,0.1); }
+  .partner-card-head { background:#1E2952; padding:40px 44px; display:flex; align-items:center; gap:28px; flex-wrap:wrap; }
+  .partner-logo-box { background:#fff; border-radius:16px; padding:16px 22px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .partner-logo-box img { height:56px; width:auto; max-width:180px; object-fit:contain; display:block; }
+  .partner-card-head-text { flex:1; min-width:220px; }
+  .partner-card-head-text .eyebrow { display:block; font-family:'Encode Sans Compressed', sans-serif; font-weight:700; font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase; color:#FFDE59; margin-bottom:8px; }
+  .partner-card-head-text h3 { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:clamp(1.4rem,2.6vw,1.9rem); color:#fff; letter-spacing:-0.5px; }
+  .partner-card-head-text p { color:rgba(255,255,255,0.65); font-size:14px; margin-top:6px; }
+
+  .partner-card-body { padding:40px 44px 44px; display:grid; grid-template-columns:1.3fr 1fr; gap:40px; }
+  .partner-card-body h4 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:15px; color:#1E2952; margin-bottom:10px; }
+  .partner-card-body p { color:#4B5563; font-size:14.5px; line-height:1.75; margin-bottom:14px; }
+  .partner-card-body p:last-child { margin-bottom:0; }
+  .partner-card-body blockquote { border-left:3px solid #2EC4B6; padding-left:16px; margin:18px 0; font-style:italic; color:#1E2952; font-size:14px; line-height:1.7; }
+
+  .partner-stats { display:flex; flex-direction:column; gap:14px; }
+  .partner-stat { background:#F7F6F2; border-radius:14px; padding:20px 22px; }
+  .partner-stat .num { font-family:'Encode Sans Compressed', sans-serif; font-weight:900; font-size:1.9rem; color:#2EC4B6; line-height:1; }
+  .partner-stat .label { font-size:12.5px; color:#374151; font-weight:600; margin-top:6px; }
+  .partner-source { font-size:11.5px; color:#9CA3AF; font-style:italic; margin-top:6px; }
+
+  .partner-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+
+  .complement-box { background:#F7F6F2; border-radius:16px; padding:26px 28px; margin-top:0; }
+  .complement-box h4 { color:#1E2952; }
+  .complement-box p { color:#4B5563; }
+  .complement-box .badge-note { display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#FF914D; margin-bottom:8px; }
+
+  /* CTA devenir partenaire */
+  .partner-cta { text-align:center; background:linear-gradient(135deg, #6FE3D8 0%, #2EC4B6 55%, #189d91 100%); border-radius:20px; padding:44px 32px; margin-top:56px; }
+  .partner-cta h2 { font-family:'Encode Sans Compressed', sans-serif; font-weight:800; font-size:clamp(1.4rem,2.6vw,1.8rem); color:#1E2952; margin-bottom:10px; }
+  .partner-cta p { color:rgba(30,41,82,0.7); max-width:480px; margin:0 auto 24px; font-size:14.5px; }
+  .btn-orange { background:#FF914D; color:#fff; }
+
+  .fade-up { opacity:0; transform:translateY(32px); transition:opacity .6s ease-out, transform .6s ease-out; }
+  .fade-up.visible { opacity:1; transform:translateY(0); }
+  .section-fade { opacity:0; transition:opacity .7s ease-out; }
+  .section-fade.visible { opacity:1; }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { transition:none; opacity:1; transform:none; }
+  }
+
+  footer { background:#1E2952; color:#fff; padding:64px 52px 32px; }
+  .footer-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; }
+  .footer-brand .logo-word { font-size:24px; margin-bottom:16px; }
+  .footer-brand .logo-word span:first-child { color:#fff; }
+  .footer-brand .logo-word span:last-child { color:#FF914D; }
+  .footer-logo { height:112px; width:auto; display:block; margin-bottom:16px; }
+  .footer-brand p { color:rgba(255,255,255,0.55); font-size:13px; line-height:1.7; margin-bottom:14px; }
+  .footer-brand a.mail { color:rgba(255,255,255,0.75); font-size:13px; font-weight:600; }
+  .footer-social { display:flex; gap:10px; margin-top:16px; }
+  .footer-social a { width:32px; height:32px; border-radius:50%; border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; font-size:13px; color:#fff; }
+  .footer-support { margin-top:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .footer-support-label { font-size:11px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.06em; }
+  .footer-cci-logo { height:30px; width:auto; }
+  footer h4 { color:#fff; font-family:'Encode Sans Compressed', sans-serif; font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:20px; }
+  footer ul { list-style:none; }
+  footer li { margin-bottom:12px; }
+  footer a { color:rgba(255,255,255,0.55); font-size:13px; }
+  footer a:hover { color:#fff; }
+  .footer-bottom { max-width:1200px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.12); padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .footer-bottom p { color:rgba(255,255,255,0.5); font-size:12px; }
+  .footer-bottom .links { display:flex; gap:20px; }
+  .footer-bottom a { font-size:12px; color:rgba(255,255,255,0.5); }
+
+  @media (max-width: 900px) {
+    .site-nav { padding:14px 20px; flex-wrap:nowrap; justify-content:space-between; position:sticky; top:0; z-index:300; }
+    .site-nav-toggle { display:flex; }
+    .site-nav-links {
+      display:none; position:absolute; top:calc(100% + 12px); left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:4px;
+      background:#fff; border-radius:14px; box-shadow:0 20px 44px rgba(30,41,82,0.18);
+      padding:14px; z-index:200;
+    }
+    .site-nav-links.open { display:flex; }
+    .site-nav-links li { width:100%; }
+    .site-nav-links a { display:block; font-size:15px; padding:12px 10px; }
+    .nav-pill-yellow, .nav-pill-orange { display:block; text-align:center; padding:12px 10px !important; font-size:15px !important; border-radius:8px !important; }
+    .nav-dropdown { width:100%; }
+    .nav-dropdown summary { display:flex; padding:12px 10px; font-size:15px; }
+    .page-hero, section { padding-left:24px; padding-right:24px; }
+    .partner-card-head { padding:32px 24px; }
+    .partner-card-body { grid-template-columns:1fr; padding:32px 24px; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns:1fr; }
+    .partner-cta { padding:32px 20px; margin-top:36px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/"><img src="logo-uptomove-web.png" alt="UP TO MOVE" class="nav-logo"></a>
+  <button type="button" class="site-nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="siteNavLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="site-nav-links" id="siteNavLinks">
+    <li><a href="formations">Formations</a></li>
+    <li><a href="clients">Clients</a></li>
+    <li class="nav-dropdown"><details><summary>À propos</summary><ul class="nav-dropdown-panel"><li><a href="apropos">Qui sommes-nous ?</a></li><li><a href="faq">FAQ</a></li><li><a href="partenaires" aria-current="page">Nos alliés santé au travail</a></li></ul></details></li>
+    <li><a href="blog">Blog</a></li>
+    <li><a href="calculateur-tms-web" class="nav-pill-yellow">Calculateur TMS</a></li>
+    <li><a href="contact" class="nav-pill-orange">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <video class="page-hero-video" autoplay muted loop playsinline>
+    <source src="Design sans titre-3 copie.mp4" type="video/mp4">
+  </video>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-inner">
+    <span class="tag tag-orange-solid">NOS ALLIÉS SANTÉ AU TRAVAIL</span>
+    <h1>Des experts complémentaires pour <span class="accent">une prévention-santé complète</span> en entreprise</h1>
+    <p><strong style="color:#FF914D;">UP TO MOVE</strong> choisit de travailler avec des acteurs dont l'approche complète la nôtre, pour offrir aux entreprises des solutions de prévention plus complètes au quotidien.</p>
+  </div>
+</section>
+
+<section class="bg-cream">
+  <div class="wrap">
+    <div class="partners-intro fade-up">
+      <h2>Pourquoi des alliés ?</h2>
+      <p>La prévention des <strong style="color:#FF914D;">T</strong>roubles <strong style="color:#FF914D;">M</strong>usculo-<strong style="color:#FF914D;">S</strong>quelettiques <strong style="color:#FF914D;">(TMS)</strong> et du mal-être au travail ne se joue pas seulement lors d'un atelier ponctuel : elle se construit aussi au quotidien.<br>C'est pourquoi <strong style="color:#FF914D;">UP TO MOVE</strong> recommande des solutions complémentaires, portées par des équipes que nous avons identifiées pour la pertinence de leur approche.</p>
+    </div>
+
+    <!-- Carte partenaire : Move Break -->
+    <div class="partner-card fade-up">
+      <div class="partner-card-head">
+        <div class="partner-logo-box">
+          <img src="https://cdn.prod.website-files.com/67fe69bf34d3cc4efd3cfb79/689b3b881af8783a00f8e39a_e812184d1ab92035adf74b133de5a64b_M.jpg" alt="Logo Move Break">
+        </div>
+        <div class="partner-card-head-text">
+          <span class="eyebrow">Allié recommandé</span>
+          <h3>Move Break</h3>
+          <p>L'assistant santé physique &amp; bien-être directement dans Microsoft Teams et Slack</p>
+        </div>
+      </div>
+      <div class="partner-card-body">
+        <div>
+          <h4>Ce que propose Move Break</h4>
+          <p>Move Break édite <strong>Noa</strong>, un chatbot intégré directement dans Microsoft Teams et Slack, qui propose aux salariés 2 à 3 micro-pauses de mouvement par jour, dédiées à la santé physique, à la santé mentale et à la prévention des TMS. L'entreprise dispose de KPI anonymisés pour suivre l'adoption de l'outil et peut construire, en complément, un « parcours de prévention » sur-mesure (ateliers, interventions, challenges).</p>
+          <blockquote>« Noa n'analyse pas vos conversations Teams/Slack avec une IA ou un LLM. C'est un chatbot qui répond à des commandes et des scénarios prédéfinis. »</blockquote>
+          <p style="font-size:12.5px; color:#9CA3AF; font-style:italic;">Source : réponse publiée dans la FAQ de move-break.com (consultée le 23/08/2026).</p>
+
+          <div class="complement-box" style="margin-top:22px;">
+            <span class="badge-note">Notre analyse</span>
+            <h4>Une complémentarité avec l'approche UP TO MOVE</h4>
+            <p>Move Break agit sur la régularité au quotidien, directement dans les outils de travail. UP TO MOVE intervient, elle, en présentiel ou en visio, avec des kinésithérapeutes qui analysent les postes de travail et transmettent des gestes adaptés. Les deux approches sont complémentaires plutôt que concurrentes : c'est notre lecture de la situation, pas une affirmation de Move Break elle-même.</p>
+          </div>
+
+          <div class="partner-actions">
+            <a href="https://www.move-break.com" target="_blank" rel="noopener" class="btn btn-navy">Découvrir Move Break</a>
+            <a href="https://www.linkedin.com/company/move-break/" target="_blank" rel="noopener" class="btn btn-white" style="border:1px solid #E8E6E0;">Move Break sur LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="partner-stats">
+          <div class="partner-stat">
+            <div class="num">2 500+</div>
+            <div class="label">salariés déjà équipés de Noa</div>
+          </div>
+          <div class="partner-stat">
+            <div class="num">76 %</div>
+            <div class="label">de taux d'utilisation hebdomadaire</div>
+          </div>
+          <div class="partner-stat">
+            <div class="num">8 300+ min</div>
+            <div class="label">de pauses bien-être réalisées</div>
+          </div>
+          <p class="partner-source">Chiffres communiqués par Move Break sur move-break.com.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="partner-cta fade-up">
+      <h2>Vous portez une solution complémentaire à la nôtre ?</h2>
+      <p>Si vous accompagnez déjà les entreprises sur la santé, le bien-être ou la qualité de vie au travail, parlons de recommandation croisée.</p>
+      <a href="contact#formulaire" class="btn btn-orange">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/"><img src="logo-uptomove-web.png" alt="UP TO MOVE" class="footer-logo"></a>
+      <p>41 rue Juge<br>75015 Paris</p>
+      <a class="mail" href="mailto:info@uptomove.fr">info@uptomove.fr</a>
+      <div class="footer-social">
+        <a href="https://fr.linkedin.com/company/uptomove" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://www.youtube.com/@uptomove" target="_blank" rel="noopener" aria-label="Vidéo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></a>
+      </div>
+      <div class="footer-support">
+        <span class="footer-support-label">Avec le soutien de</span>
+        <img src="logo-cci-paris.png" alt="CCI Paris Île-de-France" class="footer-cci-logo">
+      </div>
+    </div>
+    <div>
+      <h4>Nos formations</h4>
+      <ul>
+        <li><a href="formations#sedentaires">Postes sédentaires</a></li>
+        <li><a href="formations#manutention">Postes manuels</a></li>
+        <li><a href="calculateur-tms-web">Calculateur TMS</a></li>
+        <li><a href="clients">Nos clients</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>À propos</h4>
+      <ul>
+        <li><a href="apropos">Qui sommes-nous ?</a></li>
+        <li><a href="faq">FAQ</a></li>
+        <li><a href="partenaires" aria-current="page">Nos alliés santé au travail</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Ressources</h4>
+      <ul>
+        <li><a href="#">Certificat Qualiopi</a></li>
+        <li><a href="mentions-legales">Mentions légales</a></li>
+        <li><a href="plan-du-site">Plan du site</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>©2026 UP TO MOVE · Prévention-santé des TMS en entreprise.</p>
+    <div class="links">
+      <a href="mentions-legales">Mentions légales</a>
+      <a href="plan-du-site">Plan du site</a>
+      <a href="politique-cookies">Politique de cookie</a>
+      <a href="vie-privee">Vie privée</a>
+      <a href="conditions-utilisation">Conditions d'utilisation</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('section').forEach(el => {
+    el.classList.add('section-fade');
+    observer.observe(el);
+  });
+});
+</script>
+<script>
+// Menu mobile (hamburger 3 lignes)
+(function () {
+  var toggle = document.querySelector('.site-nav-toggle');
+  var links = document.querySelector('.site-nav-links');
+  if (!toggle || !links) return;
+  function closeMenu() {
+    links.classList.remove('open');
+    toggle.classList.remove('is-active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  toggle.addEventListener('click', function () {
+    var isOpen = links.classList.toggle('open');
+    toggle.classList.toggle('is-active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') closeMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) closeMenu();
+  });
+})();
+</script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>
