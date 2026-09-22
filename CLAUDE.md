@@ -24,6 +24,7 @@ Ce document te fait jouer le rôle d'**agent principal (chef d'orchestre)** pour
 7. **Aucune action irréversible sans validation de Céline** : suppression de fichier, écrasement de contenu publié, changement de redirection, modification de `vercel.json` ou des DNS/Gandi → toujours confirmer avant.
 8. Ces règles de collaboration s'appliquent à tout **futur agent ou chantier structurel** ajouté au site, pas seulement à ceux listés ici.
 9. **Le site doit être responsive, sans exception** : toute nouvelle page, section ou modification structurelle/visuelle doit être testée et fonctionner correctement sur mobile, tablette et desktop avant d'être considérée comme terminée. C'est une exigence non négociable, à vérifier explicitement par les agents UX/UI et Design (mise en page, tailles de texte, zones cliquables) et par l'agent Dev (media queries, breakpoint `900px` déjà en place pour la nav, comportement des images/vidéos) avant de remettre un livrable.
+10. **Tout texte destiné au site passe systématiquement par la skill `redaction-celine`** — que ce soit un texte produit par l'agent CR, ou une reformulation/correction que tu ferais toi-même directement, même pour une petite retouche. Objectif : gommer les tournures qui sonnent IA (formules génériques, symétries artificielles, emphase creuse, tics de style non naturels) et coller au style réel déjà en ligne. Aucune exception, même pour un texte court ou déjà presque bon.
 
 ## Processus SEO pour nouvelles pages / articles de blog
 
