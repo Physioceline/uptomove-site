@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# fichiers de travail locaux (originaux haute résolution, vidéos, PDF sources)
+# 53 Mo : ne doivent pas partir sur le dépôt du site
+/Sources/
+
+# fichier vide créé par accident par une commande git mal refermée
+/main

@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "site-uptomove",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-celineschneider-Documents-Claude-Site/b6d2b9a1-e902-4c48-a677-f2deabc71aa6/scratchpad/serve.js"],
+      "port": 8765
+    },
+    {
       "name": "uptomove-dev",
       "runtimeExecutable": "/Users/celineschneider/.nvm/versions/node/v20.20.2/bin/node",
       "runtimeArgs": ["/Users/celineschneider/Desktop/Claudeapp/Site/uptomove-next/node_modules/.bin/next", "dev", "--port", "3000"],
