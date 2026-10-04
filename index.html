@@ -591,6 +591,53 @@
     text-decoration-thickness: 2px; text-underline-offset: 6px;
   }
 
+  /* ── BLOC 7 : indicateurs de résultats (transparent, tient sur crème comme sur blanc) ── */
+  .indic { max-width: 880px; margin: 32px auto 0; text-align: left; }
+  .indic-title {
+    font-family: 'Encode Sans Compressed', sans-serif; font-weight: 800; font-size: 22px;
+    color: var(--navy); line-height: 1.3; margin: 0 0 10px;
+  }
+  .indic-scope {
+    font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+    color: var(--text); line-height: 1.6; margin: 0 0 22px;
+  }
+
+  .indic-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto); grid-auto-flow: column;
+    column-gap: clamp(40px, 6vw, 88px); row-gap: 0;
+  }
+
+  .indic-row {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px;
+    padding: 26px 0 14px;
+    border-bottom: 3px solid var(--navy);   /* filet décoratif, pas une jauge */
+  }
+
+  .indic-label {
+    flex: 1 1 auto; min-width: 0;
+    font-family: 'Nunito', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--navy); line-height: 1.35;
+  }
+
+  .indic-value {
+    flex: 0 0 auto; margin-left: auto; white-space: nowrap;
+    font-family: 'Encode Sans Compressed', sans-serif; font-weight: 800;
+    font-size: clamp(26px, 2.6vw, 34px); line-height: 1;
+    color: var(--navy); font-variant-numeric: tabular-nums;
+  }
+  .indic-unit { font-size: .52em; font-weight: 700; }
+
+  @media (max-width: 899px) {
+    .indic { max-width: 640px; }
+    .indic-grid { grid-template-columns: 1fr; grid-template-rows: auto; grid-auto-flow: row; }
+    .indic-row { padding: 18px 0 12px; gap: 12px; }
+  }
+  @media (max-width: 599px) {
+    .indic-label { font-size: 12.5px; letter-spacing: .04em; }
+  }
+
   /* ── BLOC 8 : CTA final ───────────────────────────────────────── */
   .cta-final {
     background: linear-gradient(100deg,#FF914D 0%,#FFDE59 100%);
@@ -1140,10 +1187,42 @@
 </section>
 
 <!-- BLOC 7 : ILS NOUS FONT CONFIANCE -->
-<section class="section section-cream">
+<section class="section section-cream" id="resultats">
   <div class="section-inner text-center">
-    <span class="tag tag-teal">Témoignages</span>
-    <h2>Ils nous font confiance</h2>
+    <span class="tag tag-teal">La preuve</span>
+    <h2>Nos résultats et ce qu'en disent nos clients</h2>
+
+    <div class="indic reveal">
+      <h3 class="indic-title">Nos indicateurs de résultats</h3>
+      <p class="indic-scope">Indicateurs portant sur l'année 2026, toutes nos formations confondues. Publiés au titre de notre certification Qualiopi.</p>
+
+      <dl class="indic-grid">
+        <div class="indic-row">
+          <dt class="indic-label">Taux de satisfaction</dt>
+          <dd class="indic-value">98,9&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+        <div class="indic-row">
+          <dt class="indic-label">Taux de réussite</dt>
+          <dd class="indic-value">90&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+        <div class="indic-row">
+          <dt class="indic-label">Atteinte des objectifs</dt>
+          <dd class="indic-value">87,5&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+        <div class="indic-row">
+          <dt class="indic-label">Animation des formations</dt>
+          <dd class="indic-value">100&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+        <div class="indic-row">
+          <dt class="indic-label">Pertinence des contenus</dt>
+          <dd class="indic-value">100&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+        <div class="indic-row">
+          <dt class="indic-label">Mise en pratique des acquis</dt>
+          <dd class="indic-value">86&nbsp;<span class="indic-unit">%</span></dd>
+        </div>
+      </dl>
+    </div>
 
     <div class="testi-grid stagger">
       <figure class="testi-card">

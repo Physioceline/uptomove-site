@@ -7,8 +7,11 @@
 | A. Refonte immersive de la page d'accueil | 22 septembre 2026 | `index.html` + 31 pages (contrastes) |
 | B. Photos d'intervention visibles sur la page clients | 2 octobre 2026 | `clients.html` + 2 pages (teal) |
 | C. Comparatif, logo Passeport, client Mutuale | 2 octobre 2026 | `index.html`, `clients.html`, `contact.html` |
+| D. Indicateurs de résultats Qualiopi | 3 octobre 2026 | `index.html`, `clients.html`, `formations.html` |
 
-Les trois chantiers ont été menés par les 5 agents du site (UX/UI, SEO, CR, Design, Dev).
+Les quatre chantiers ont été menés par les 5 agents du site (UX/UI, SEO, CR, Design, Dev).
+
+⚠️ **Le chantier A à C a été commité** (`b5ac08a`, 2 octobre). Le chantier D ne l'est pas encore.
 
 ---
 
@@ -236,6 +239,63 @@ Placée **en dernier**, après VSF. L'ordre existant se lit comme une décroissa
 
 ---
 
+---
+
+# CHANTIER D — Indicateurs de résultats Qualiopi
+
+Céline publie pour la première fois ses indicateurs de résultats, exigence du référentiel Qualiopi. **Aucun chiffre de performance ne figurait sur le site jusqu'ici.**
+
+## D1. Le bloc, sur la page d'accueil
+
+Inséré **en tête du bloc 7**, avant les témoignages — pas de nouvelle section, la page reste à 8 blocs. Section dotée de `id="resultats"` pour une URL directe en dossier d'audit.
+
+| Indicateur | Valeur |
+|---|---|
+| Taux de satisfaction | 98,9 % |
+| Taux de réussite | 90 % |
+| Atteinte des objectifs | 87,5 % |
+| Animation des formations | 100 % |
+| Pertinence des contenus | 100 % |
+| Mise en pratique des acquis | 86 % |
+
+Mention de périmètre, placée **au-dessus** de la grille (un chiffre sans périmètre n'est pas opposable) : « Indicateurs portant sur l'année 2026, toutes nos formations confondues. Publiés au titre de notre certification Qualiopi. »
+
+**Impact mesuré** : page de 6 629 à **6 835 px**, soit +3 %. L'allègement obtenu au chantier A est préservé.
+
+## D2. Décisions à retenir
+
+- **Pas de barres de progression, un simple filet décoratif.** Deux raisons : une barre informative doit atteindre 3:1 de contraste, or aucune combinaison de la charte n'y arrive sur fond crème (orange sur crème = 2,06:1) ; et sur une plage de 86 à 100 %, une barre écrase l'écart réel. Le chiffre exact est de toute façon plus précis qu'une barre. Conséquence technique : **ni `role="progressbar"` ni `aria-valuenow`** — ce sont des résultats consolidés, pas une progression.
+- **Une seule couleur** (bleu marine) pour les six valeurs et les six filets. Une différence de couleur sans clé de lecture fait chercher une clé, ce qui est rédhibitoire sur un bloc lu par un auditeur.
+- **Les six libellés sont ceux de Céline, inchangés.** L'agent rédaction proposait « Qualité de l'animation » à la place d'« Animation des formations », plus clair en soi — écarté : ces libellés viennent des questionnaires qualité, et un auditeur compare le site aux documents sources.
+- **« 86 % » et non « 86,0 % »** : même valeur, et l'alignement à droite rendait l'irrégularité visible à côté de « 90 » et « 100 ».
+- **Pas de dépliant « Comment ces résultats sont mesurés »**, faute de base de calcul (voir D4).
+
+## D3. Deux corrections induites
+
+- **Page clients, fiche Mutuale** : la légende devient « taux de satisfaction **sur cette intervention** ». Le même 98,9 % figure des deux côtés — en moyenne toutes formations sur l'accueil, en résultat d'intervention sur la fiche. Céline confirme la coïncidence ; les deux périmètres sont désormais explicites. **Ces deux textes forment un tout : ne jamais en modifier un sans l'autre.**
+- **Page d'accueil, bloc 7** : la pastille « Témoignages » devient **« La preuve »** et le titre « Ils nous font confiance » devient **« Nos résultats et ce qu'en disent nos clients »**. Motif : la section contient maintenant trois choses, et la phrase « Ils nous font confiance » figurait **deux fois sur la page** — elle reste en légende du carrousel de logos, là où elle est à sa place.
+- **Page formations** : le tag de la section « Postes sédentaires » passe de `#189d91` à `#12786F` (2,84:1 → 4,52:1).
+
+## D4. Ce qui manque encore à ces chiffres
+
+Ils sont publiés sans base de calcul. Pour qu'ils tiennent devant un acheteur public ou un audit, il faudrait documenter — au moins dans les archives de Céline, idéalement sur le site :
+
+- le **nombre de sessions et de répondants** sur 2026 ;
+- si la mesure est faite **à chaud** (fin de session) ou **à froid** ;
+- ce que recouvre le **« taux de réussite » de 90 %** (réussite au QCM final ?) ;
+- de qui sont les **objectifs** du « 87,5 % d'atteinte » (pédagogiques, ou ceux du client ?).
+
+Rien de tout cela n'a été inventé ni affirmé sur le site. Le dépliant explicatif prévu par l'UX reste à créer le jour où ces éléments existent.
+
+## D5. Restant à traiter
+
+- **`formations.html`** : `.pill-teal` (ligne 100) présente très probablement le même échec de contraste que le tag corrigé ligne 308. Non traité.
+- **`--muted` `#6B7280` sur crème = 4,47:1**, juste sous le seuil de 4,5:1. Affecte les mentions « Source : INRS » du bloc 3 et le label du bandeau de logos.
+- **`#resultats` sans `scroll-margin-top`** : en arrivant directement sur `/#resultats`, la nav collante recouvre le titre. Toutes les ancres de la page ont ce défaut, à traiter ensemble.
+- **Reprendre ce bloc sur `formations.html`** : c'est l'autre endroit où un acheteur cherche des indicateurs de résultats.
+
+---
+
 ## 7. Où retrouver le détail
 
 ### Chantier A — page d'accueil
@@ -258,6 +318,14 @@ Placée **en dernier**, après VSF. L'ordre existant se lit comme une décroissa
 |---|---|
 | `.claude/agent-drafts/design-comparatif-passeport-mutuale-2026-10-02.md` | Bloc comparatif, plaque blanche du logo Passeport, cas à une photo |
 | `.claude/agent-drafts/redaction-clients-mutuale-2026-10-02.md` | Fiche Mutuale complète, libellés du comparatif, textes alternatifs |
+
+### Chantier D — indicateurs de résultats
+| Document | Contenu |
+|---|---|
+| `.claude/agent-drafts/ux-ui-indicateurs-2026-10-02.md` | Emplacement, impact sur la longueur, comportement mobile |
+| `.claude/agent-drafts/design-indicateurs-2026-10-02.md` | Spec du composant, démonstration contre les barres de progression |
+| `.claude/agent-drafts/redaction-indicateurs-2026-10-02.md` | Titre, ligne de périmètre, légende Mutuale |
+| `.claude/agent-drafts/redaction-indicateurs-pastille-2026-10-03.md` | Pastille « La preuve » et nouveau titre de section |
 
 **Assets créés** :
 - `hero-atelier-tms-1376.webp` / `.jpg` et `hero-atelier-tms-900.webp` / `.jpg`, depuis `Sources/bannière principale.jpg`
