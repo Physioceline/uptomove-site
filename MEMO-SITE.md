@@ -51,6 +51,8 @@ Pas de restriction de domaine configurée (option absente sur le plan gratuit) �
 | Fond crème (sections claires) | `#F7F6F2` |
 | Fond gris clair (fond de page général) | `#EFEFEF` |
 | Texte gris (paragraphes) | `#374151` |
+| Orange foncé `--orange-ink` (texte d'erreur et liens orange sur fond clair) | `#A84B0F` |
+| Gris-bleu `--field-line` (bordure de champ de formulaire) | `#8389A0` |
 
 ### Typographies (Google Fonts)
 Importées via : `Encode+Sans+Compressed:wght@700;800;900` · `Josefin+Slab:wght@700` · `Nunito:wght@300;400;500;600;700;800`

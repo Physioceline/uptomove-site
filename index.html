@@ -110,6 +110,8 @@
     --text:        #374151;
     --muted:       #6B7280;
     --line:        #E8E6E0;
+    --orange-ink:  #A84B0F;   /* texte orange / erreur sur fond clair : 5,71 blanc · 5,28 crème */
+    --field-line:  #8389A0;   /* bordure de champ au repos : 3,47 blanc · 3,21 crème */
 
     --pad-xl: clamp(88px, 8vw, 120px);
     --pad-l:  clamp(72px, 6.5vw, 96px);
@@ -149,7 +151,7 @@
     font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 7px 16px; border-radius: 100px; margin-bottom: 24px;
   }
-  .tag-orange { background: rgba(255,145,77,0.12); border: 1px solid rgba(255,145,77,0.35); color: #FF914D; }
+  .tag-orange { background: rgba(255,145,77,0.12); border: 1px solid rgba(255,145,77,0.35); color: var(--orange-ink); }
   .tag-teal   { background: rgba(46,196,182,0.12); border: 1px solid rgba(46,196,182,0.35); color: var(--teal-dark); }
 
   .section h2 {
@@ -505,6 +507,7 @@
   .comp-table tbody tr { border-bottom: 1px solid var(--line); }
   .comp-table tbody tr:nth-child(odd) { background: var(--cream); }
   .comp-table tbody tr:nth-child(even) { background: #fff; }
+  .comp-table tbody tr:nth-child(odd) td.td-other { color: var(--text); }
 
   .passeport {
     background: linear-gradient(135deg,#1E2952 60%,#2a3870);
@@ -669,7 +672,7 @@
   #newsletter-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; }
   #newsletter-form input {
     flex: 1; min-width: 0; min-height: 52px; padding: 14px 20px;
-    border: 1.5px solid var(--line); border-radius: 100px;
+    border: 1.5px solid var(--field-line); border-radius: 100px;
     font-size: 15px; font-family: 'Nunito', sans-serif; color: var(--navy); outline: none;
   }
   #newsletter-form input:focus { border-color: var(--teal-dark); }
@@ -1174,12 +1177,12 @@
     <div class="b6-preview" aria-hidden="true">
       <span class="b6-preview-tag">Exemple de restitution</span>
       <span class="b6-preview-label">Coût annuel estimé</span>
-      <span class="b6-preview-amount">128&nbsp;400&nbsp;€</span>
+      <span class="b6-preview-amount">99&nbsp;380&nbsp;€</span>
       <span class="b6-preview-label">Niveau de risque</span>
       <div class="b6-preview-gauge"><span></span></div>
       <span class="b6-preview-risk">Élevé</span>
       <div class="b6-preview-rows">
-        <div class="b6-preview-row"><span>Arrêts liés aux TMS</span><b>32&nbsp;jours / an</b></div>
+        <div class="b6-preview-row"><span>Arrêts liés aux TMS</span><b>176&nbsp;jours / an</b></div>
         <div class="b6-preview-row"><span>Postes les plus exposés</span><b>Manutention</b></div>
       </div>
     </div>
@@ -1338,13 +1341,13 @@
 
     <!-- Bas de footer -->
     <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-      <p style="font-size:12px; color:rgba(255,255,255,0.3); margin:0;">©2026 UP TO MOVE — Prévention-santé des TMS en entreprise.</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.5); margin:0;">©2026 UP TO MOVE — Prévention-santé des TMS en entreprise.</p>
       <div style="display:flex; gap:24px;">
-        <a href="mentions-legales" style="font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none;">Mentions légales</a>
-        <a href="plan-du-site" style="font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none;">Plan du site</a>
-        <a href="politique-cookies" style="font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none;">Politique de cookie</a>
-        <a href="vie-privee" style="font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none;">Vie privée</a>
-        <a href="conditions-utilisation" style="font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none;">Conditions d'utilisation</a>
+        <a href="mentions-legales" style="font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;">Mentions légales</a>
+        <a href="plan-du-site" style="font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;">Plan du site</a>
+        <a href="politique-cookies" style="font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;">Politique de cookie</a>
+        <a href="vie-privee" style="font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;">Vie privée</a>
+        <a href="conditions-utilisation" style="font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none;">Conditions d'utilisation</a>
       </div>
     </div>
 
@@ -1457,11 +1460,11 @@
           msg.textContent = 'Merci\u202f! Votre inscription est bien prise en compte.';
           form.reset();
         } else {
-          msg.style.color = '#EF4444';
+          msg.style.color = '#A84B0F';
           msg.textContent = 'Une erreur est survenue, merci de réessayer.';
         }
       }).catch(function () {
-        msg.style.color = '#EF4444';
+        msg.style.color = '#A84B0F';
         msg.textContent = 'Une erreur est survenue, merci de réessayer.';
       });
     });

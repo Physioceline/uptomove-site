@@ -12,7 +12,7 @@
 <meta property="og:title" content="Blog UP TO MOVE : prévention des TMS en entreprise">
 <meta property="og:description" content="Actualités réglementaires, conseils pratiques et exercices pour prévenir les Troubles Musculo-Squelettiques en entreprise.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.uptomove.fr/blog.html">
+<meta property="og:url" content="https://www.uptomove.fr/blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Blog UP TO MOVE : prévention des TMS en entreprise">
 <meta name="twitter:description" content="Actualités réglementaires, conseils pratiques et exercices pour prévenir les Troubles Musculo-Squelettiques en entreprise.">
@@ -110,7 +110,7 @@
   /* Recherche */
   .blog-search-wrap { margin-bottom:0; }
   .blog-search-box { position:relative; max-width:560px; }
-  .blog-search-box input { width:100%; font-family:'Nunito', sans-serif; font-size:15px; padding:16px 20px 16px 48px; border-radius:100px; border:1px solid #E8E6E0; background:#fff; color:#1E2952; transition:box-shadow .2s ease, border-color .2s ease; }
+  .blog-search-box input { width:100%; font-family:'Nunito', sans-serif; font-size:15px; padding:16px 20px 16px 48px; border-radius:100px; border:1px solid #8389A0; background:#fff; color:#1E2952; transition:box-shadow .2s ease, border-color .2s ease; }
   .blog-search-box input:focus { outline:2px solid #2EC4B6; outline-offset:1px; box-shadow:0 8px 24px rgba(30,41,82,0.12); }
   .blog-search-box::before { content:'⌕'; position:absolute; left:20px; top:50%; transform:translateY(-50%); font-size:18px; color:#9CA3AF; pointer-events:none; }
   .blog-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
@@ -527,7 +527,7 @@
     <h2 style="font-family:'Encode Sans Compressed',sans-serif; font-weight:800; font-size:36px; color:#1E2952; letter-spacing:-0.5px; margin:0 0 12px;">
       Newsletter <em style="font-style:normal; color:#FF914D;">UP TO MOVE</em>
     </h2>
-    <p style="font-size:15px; color:#6B7280; margin:0 0 32px; font-weight:300;">
+    <p style="font-size:15px; color:#374151; margin:0 0 32px; font-weight:300;">
       S'inscrire ici pour rester informé des actualités TMS, prévention et QVCT.
     </p>
     <form id="newsletter-form" action="https://formspree.io/f/xwleqbzy" method="POST" style="display:flex; gap:12px; max-width:480px; margin:0 auto;">
@@ -536,9 +536,9 @@
         name="email"
         required
         placeholder="Votre email"
-        style="flex:1; padding:14px 20px; border:1.5px solid #E8E6E0; border-radius:100px; font-size:15px; font-family:'Nunito',sans-serif; outline:none; color:#1E2952;"
-        onfocus="this.style.borderColor='#2EC4B6'"
-        onblur="this.style.borderColor='#E8E6E0'"
+        style="flex:1; padding:14px 20px; border:1.5px solid #8389A0; border-radius:100px; font-size:15px; font-family:'Nunito',sans-serif; outline:none; color:#1E2952;"
+        onfocus="this.style.borderColor='#12786F'"
+        onblur="this.style.borderColor='#8389A0'"
       >
       <button
         type="submit"
@@ -560,7 +560,7 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var data = new FormData(form);
-      msg.style.color = '#6B7280';
+      msg.style.color = '#374151';
       msg.textContent = 'Envoi en cours…';
       fetch(form.action, {
         method: 'POST',
@@ -568,15 +568,15 @@
         headers: { 'Accept': 'application/json' }
       }).then(function(response) {
         if (response.ok) {
-          msg.style.color = '#2EC4B6';
+          msg.style.color = '#12786F';
           msg.textContent = 'Merci ! Votre inscription est bien prise en compte.';
           form.reset();
         } else {
-          msg.style.color = '#EF4444';
+          msg.style.color = '#A84B0F';
           msg.textContent = 'Une erreur est survenue, merci de réessayer.';
         }
       }).catch(function() {
-        msg.style.color = '#EF4444';
+        msg.style.color = '#A84B0F';
         msg.textContent = 'Une erreur est survenue, merci de réessayer.';
       });
     });
