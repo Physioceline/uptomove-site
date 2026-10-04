@@ -95,4 +95,4 @@ Chaque agent enregistre son livrable dans `.claude/agent-drafts/calc-<agent>-<sl
 
 | Date | Chantier | Branche | Statut |
 |---|---|---|---|
-| 2026-10-04 | Mise en place de l'orchestration calculateur (6 agents, registre des sources) | `calc/refonte-charte-2026-10` | En cours |
+| 2026-10-04 | Orchestration calculateur (6 agents, registre des sources) + refonte charte, méthode sourcée, structure 3 étapes, PDF, balisage SEO | `calc/refonte-charte-2026-10` | Prévisualisation, en attente de validation de Céline |
