@@ -538,8 +538,10 @@
   .calc-hint { font-size: 14px; line-height: 1.55; color: var(--text); margin: -2px 0 2px; }
   .calc-note {
     display: flex; gap: 8px; align-items: flex-start;
+    max-width: 62ch;
     font-size: 13.5px; line-height: 1.5; color: var(--text);
   }
+  .calc-note > span { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
   .calc-note svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; color: var(--teal-dark); }
   .calc-input, .calc-select {
     width: 100%; min-height: 52px; padding: 13px 16px;
@@ -572,10 +574,151 @@
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
   input[type=number] { -moz-appearance: textfield; }
-  .calc-range { width: 100%; max-width: 420px; accent-color: var(--navy); min-height: 44px; cursor: pointer; }
-  .calc-range:disabled { cursor: not-allowed; opacity: .5; }
-  .calc-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-  .calc-deduit { font-size: 14.5px; font-weight: 700; color: var(--navy); }
+  /* ── Barre de répartition (part-femmes) ─────────────────────── */
+  .calc-field--share { max-width: 480px; }        /* barre, note, case et erreur sur la même largeur */
+  
+  .calc-share {
+    --share-left:  var(--teal-dark);              /* A1 : Femmes à gauche */
+    --share-right: var(--navy);
+    --thumb-line:  var(--navy);
+    display: flex; flex-direction: column; gap: 6px;
+    margin-top: 4px;
+  }
+  .calc-share--hommes-gauche {                     /* A2 */
+    --share-left:  var(--navy);
+    --share-right: var(--teal-dark);
+  }
+  
+  /* Lecture aux extrémités */
+  .calc-share-readout { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+  .calc-share-side { display: inline-flex; align-items: baseline; gap: 8px; min-width: 0; }
+  .calc-share-side--right { justify-content: flex-end; text-align: right; }
+  .calc-share-name {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--text);   /* 10,31:1 */
+  }
+  .calc-share-side--left  .calc-share-name::before,
+  .calc-share-side--right .calc-share-name::after {             /* pastille = clé de couleur du segment */
+    content: ''; width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+  }
+  .calc-share-side--left  .calc-share-name::before { background: var(--share-left); }
+  .calc-share-side--right .calc-share-name::after  { background: var(--share-right); }
+  .calc-share-val {
+    font-family: 'Encode Sans Compressed', sans-serif; font-weight: 800;
+    font-size: 26px; line-height: 1; letter-spacing: -.3px;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .calc-share-side--left  .calc-share-val { color: var(--share-left); }
+  .calc-share-side--right .calc-share-val { color: var(--share-right); }
+  
+  /* Curseur : remise à zéro */
+  .calc-share-range {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 44px; margin: 0; padding: 0;
+    background: transparent; cursor: pointer; touch-action: manipulation;
+    --cut: calc(22px + (100% - 44px) * var(--p, .5));  /* centre exact de la poignée */
+  }
+  .calc-share-range:focus { outline: none; }
+  .calc-share-range:focus-visible { outline: none; }    /* annule la règle globale l.176 : l'anneau est sur la poignée */
+  
+  /* Piste — WebKit / Blink */
+  .calc-share-range::-webkit-slider-runnable-track {
+    height: 10px; border-radius: 100px;
+    background: linear-gradient(to right,
+      var(--share-left) 0 var(--cut), var(--share-right) var(--cut) 100%);
+  }
+  /* Piste — Firefox (le segment gauche est dessiné par ::-moz-range-progress) */
+  .calc-share-range::-moz-range-track    { height: 10px; border-radius: 100px; background: var(--share-right); border: 0; }
+  .calc-share-range::-moz-range-progress { height: 10px; border-radius: 100px; background: var(--share-left); }
+  .calc-share-range::-moz-focus-outer    { border: 0; }
+  
+  /* Poignée : zone active de 44 × 44 px, disque visible de 32 px dessiné en dégradé radial,
+     ce qui permet de placer l'anneau de focus DANS la zone de 44 px, autour du disque. */
+  .calc-share-range::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 44px; height: 44px; margin-top: -17px;           /* (10 - 44) / 2 */
+    border: 0; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, transparent 16.5px);
+    cursor: grab;
+  }
+  .calc-share-range::-moz-range-thumb {
+    width: 44px; height: 44px; border: 0; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, transparent 16.5px);
+    cursor: grab;
+  }
+  
+  /* Survol : halo navy léger */
+  .calc-share-range:hover::-webkit-slider-thumb {
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, rgba(30,41,82,.10) 16.5px 22px, transparent 22px);
+  }
+  .calc-share-range:hover::-moz-range-thumb {
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, rgba(30,41,82,.10) 16.5px 22px, transparent 22px);
+  }
+  /* Glissé en cours : halo orange de marque (même valeur que le focus des champs) */
+  .calc-share-range:active::-webkit-slider-thumb {
+    cursor: grabbing;
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, rgba(255,145,77,.35) 16.5px 22px, transparent 22px);
+  }
+  .calc-share-range:active::-moz-range-thumb {
+    cursor: grabbing;
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, rgba(255,145,77,.35) 16.5px 22px, transparent 22px);
+  }
+  /* Focus clavier : anneau navy de 3 px, séparé du disque par 2,5 px de blanc */
+  .calc-share-range:focus-visible::-webkit-slider-thumb {
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, #fff 16.5px 18.5px, var(--navy) 19px 21.5px, transparent 22px);
+  }
+  .calc-share-range:focus-visible::-moz-range-thumb {
+    background: radial-gradient(circle, #fff 0 13px, var(--thumb-line) 13.5px 16px, #fff 16.5px 18.5px, var(--navy) 19px 21.5px, transparent 22px);
+  }
+  
+  /* ── États ─────────────────────────────────────────────────────── */
+  /* Non renseigné : piste unie, poignée neutre au centre, tirets */
+  .calc-share[data-etat="vide"] { --share-left: var(--field-line); --share-right: var(--field-line); --thumb-line: var(--field-line); }
+  .calc-share[data-etat="vide"] .calc-share-val,
+  .calc-share[data-etat="erreur"] .calc-share-val { color: var(--muted); }               /* 4,83:1 sur blanc */
+  .calc-share[data-etat="vide"] .calc-share-name::before,
+  .calc-share[data-etat="vide"] .calc-share-name::after { opacity: .35; }
+  
+  /* Erreur : piste neutre, poignée cerclée d'orange-ink, liseré sur la piste */
+  .calc-share[data-etat="erreur"] { --share-left: var(--field-line); --share-right: var(--field-line); --thumb-line: var(--orange-ink); }
+  .calc-share[data-etat="erreur"] .calc-share-range::-webkit-slider-runnable-track { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--orange-ink); }
+  .calc-share[data-etat="erreur"] .calc-share-range::-moz-range-track             { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--orange-ink); }
+  
+  /* « Je ne connais pas » : grisé, poignée sur 47 % (valeur posée par le JS), lecture conservée */
+  .calc-share[data-etat="jnsp"] { --share-left: #A0C9C5; --share-right: #A5A9BA; --thumb-line: var(--field-line); }  /* teal foncé et navy à 40 % */
+  .calc-share[data-etat="jnsp"] .calc-share-val { color: var(--text); }                   /* la valeur utilisée reste lisible : 10,31:1 */
+  .calc-share-range:disabled { cursor: not-allowed; }
+  .calc-share-range:disabled::-webkit-slider-thumb {
+    cursor: not-allowed;
+    background: radial-gradient(circle, var(--grey-bg) 0 13px, var(--field-line) 13.5px 16px, transparent 16.5px);
+  }
+  .calc-share-range:disabled::-moz-range-thumb {
+    cursor: not-allowed;
+    background: radial-gradient(circle, var(--grey-bg) 0 13px, var(--field-line) 13.5px 16px, transparent 16.5px);
+  }
+  
+  /* Contrastes forcés (Windows) : les dégradés disparaissent, on redonne des couleurs système */
+  @media (forced-colors: active) {
+    .calc-share-range::-webkit-slider-runnable-track { background: GrayText; }
+    .calc-share-range::-moz-range-track { background: GrayText; }
+    .calc-share-range::-moz-range-progress { background: Highlight; }
+    .calc-share-range::-webkit-slider-thumb { background: radial-gradient(circle, CanvasText 0 16px, transparent 16.5px); }
+    .calc-share-range::-moz-range-thumb { background: radial-gradient(circle, CanvasText 0 16px, transparent 16.5px); }
+    .calc-share-range:focus-visible { outline: 3px solid Highlight; outline-offset: 2px; }
+    .calc-share-name::before, .calc-share-name::after { forced-color-adjust: none; }
+  }
+  
+  /* ── Mobile ────────────────────────────────────────────────────── */
+  @media (max-width: 599px) {
+    .calc-field--share { max-width: none; }
+    .calc-share-val { font-size: 24px; }
+  }
+  @media (max-width: 379px) {                         /* 320-379 px : nom au-dessus du chiffre */
+    .calc-share-side { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .calc-share-side--right { align-items: flex-end; flex-direction: column-reverse; }   /* libellé au-dessus du chiffre, comme à gauche */
+    .calc-share-side--right .calc-share-name { flex-direction: row-reverse; }
+  }
 
   /* Répartitions en % */
   .calc-split { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
@@ -1123,21 +1266,29 @@
         <h2 class="calc-step-title" id="titre-etape-2" tabindex="-1">Vos équipes</h2>
         <p class="calc-step-sub">Le profil de vos salariés affine le niveau de risque. Si vous n'avez pas ces chiffres, cochez «&nbsp;Je ne connais pas la répartition&nbsp;».</p>
 
-        <div class="calc-block calc-field">
-          <label class="calc-label" for="femmes">Part de femmes dans l'effectif, en&nbsp;%</label>
-          <p class="calc-note" id="aide-femmes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Les femmes représentent 55&nbsp;% des TMS reconnus en maladie professionnelle pour 47&nbsp;% des salariés (Assurance Maladie – Risques professionnels, données 2023).</span></p>
-          <div class="calc-inline">
-            <input class="calc-input calc-input--narrow" type="number" id="femmes" inputmode="numeric" min="0" max="100" step="1" aria-describedby="aide-femmes femmes-deduit err-femmes">
-            <input class="calc-range" type="range" id="femmes-curseur" min="0" max="100" step="1" value="50" aria-label="Part de femmes, en %">
+        <div class="calc-block calc-field calc-field--share" id="bloc-femmes">
+          <label class="calc-label" for="femmes">Répartition femmes / hommes de votre effectif</label>
+          <div class="calc-share" id="femmes-barre" data-etat="vide">
+            <div class="calc-share-readout" aria-hidden="true">
+              <span class="calc-share-side calc-share-side--left">
+                <span class="calc-share-name">Femmes</span>
+                <span class="calc-share-val" id="femmes-val">–&nbsp;%</span>
+              </span>
+              <span class="calc-share-side calc-share-side--right">
+                <span class="calc-share-val" id="hommes-val">–&nbsp;%</span>
+                <span class="calc-share-name">Hommes</span>
+              </span>
+            </div>
+            <input type="range" class="calc-share-range" id="femmes" min="0" max="100" step="1" value="50" aria-valuetext="Non renseigné, déplacez le curseur" aria-describedby="err-femmes aide-femmes">
           </div>
-          <p class="calc-deduit" id="femmes-deduit" aria-live="polite"></p>
           <p class="calc-error" id="err-femmes" hidden></p>
           <label class="calc-choice calc-choice--compact">
             <input type="checkbox" class="calc-choice-input" id="femmes-jnsp">
             <span class="calc-choice-mark" aria-hidden="true"></span>
             <span class="calc-choice-text"><span class="calc-choice-title">Je ne connais pas la répartition</span></span>
           </label>
-          <p class="calc-note" id="femmes-jnsp-actif" aria-live="polite" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Nous utilisons la part moyenne de femmes parmi les salariés en France, 47&nbsp;% (Assurance Maladie – Risques professionnels, données 2023).</span></p>
+          <p class="calc-note" id="femmes-jnsp-actif" aria-live="polite" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Moyenne utilisée, 47&nbsp;% de femmes et 53&nbsp;% d'hommes, comme parmi l'ensemble des salariés en France.</span></p>
+          <p class="calc-note" id="aide-femmes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Les femmes représentent 55&nbsp;% des TMS reconnus en maladie professionnelle pour 47&nbsp;% des salariés (Assurance Maladie – Risques professionnels, données 2023).</span></p>
         </div>
 
         <fieldset class="calc-block calc-split" id="ages" aria-describedby="aide-age err-age">
@@ -1777,8 +1928,7 @@ function validerEtape(etape, d) {
   if (etape === 2) {
     if (!d.femmesJnsp) {
       n = lireEntier(d.femmes);
-      if (n === null) e.push({ champ: 'femmes', code: 'erreur.femmes.vide' });
-      else if (isNaN(n) || n > 100) e.push({ champ: 'femmes', code: 'erreur.femmes.invalide' });
+      if (n === null || isNaN(n) || n > 100) e.push({ champ: 'femmes', code: 'erreur.femmes.vide' });
     }
     if (!d.ageJnsp) {
       var vides = 0; total = 0;
@@ -1846,7 +1996,11 @@ function calculer(d) {
     'compteur.reste': 'Total {{total}}' + NB + '%, il reste {{reste}}' + NB + '% à répartir',
     'compteur.depasse': 'Total {{total}}' + NB + '%, retirez {{exces}}' + NB + '%',
     'compteur.complet': 'Total 100' + NB + '%',
-    'etape2.femmes.deduit': 'Soit {{pct_hommes}}' + NB + '% d\'hommes',
+    'etape2.femmes.extremite.gauche': '{{pct_femmes}}' + NB + '%',      // « Femmes » écrit dans le HTML
+    'etape2.femmes.extremite.droite': '{{pct_hommes}}' + NB + '%',      // « Hommes » écrit dans le HTML
+    'etape2.femmes.non-renseigne.lecture': '–' + NB + '%',
+    'etape2.femmes.aria-valuetext': '{{pct_femmes}}' + NB + '% de femmes, {{pct_hommes}}' + NB + '% d\'hommes',
+    'etape2.femmes.aria-valuetext.non-renseigne': 'Non renseigné, déplacez le curseur',
     'etape3.signaux.annonce.d': '«' + NB + 'Aucun de ces signaux' + NB + '» est coché, les autres réponses ont été décochées.',
     'etape3.signaux.annonce.autre': '«' + NB + 'Aucun de ces signaux' + NB + '» a été décoché.',
     'erreur.secteur': 'Choisissez votre secteur d\'activité.',
@@ -1855,8 +2009,7 @@ function calculer(d) {
     'erreur.postes.aucun': 'Cochez au moins un type de poste.',
     'erreur.postes.total': 'La répartition des postes doit totaliser 100' + NB + '%. Il reste {{reste}}' + NB + '% à répartir.',
     'erreur.postes.total-depasse': 'La répartition des postes doit totaliser 100' + NB + '%. Retirez {{exces}}' + NB + '%.',
-    'erreur.femmes.vide': 'Indiquez la part de femmes, ou cochez «' + NB + 'Je ne connais pas la répartition' + NB + '».',
-    'erreur.femmes.invalide': 'Indiquez un pourcentage entre 0 et 100.',
+    'erreur.femmes.vide': 'Déplacez le curseur ou cochez «' + NB + 'Je ne connais pas la répartition' + NB + '».',
     'erreur.age.vide': 'Indiquez la répartition par âge, ou cochez «' + NB + 'Je ne connais pas la répartition' + NB + '».',
     'erreur.age.total': 'La répartition par âge doit totaliser 100' + NB + '%. Il reste {{reste}}' + NB + '% à répartir.',
     'erreur.age.total-depasse': 'La répartition par âge doit totaliser 100' + NB + '%. Retirez {{exces}}' + NB + '%.',
@@ -1995,7 +2148,7 @@ function calculer(d) {
       postesCoches: cochesPostes(),
       postesPct: pct,
       postesEgaux: etat.postesEgaux,
-      femmes: $('femmes').value,
+      femmes: femmesSaisie.touche ? String(femmesSaisie.valeur) : '',
       femmesJnsp: $('femmes-jnsp').checked,
       ages: [1, 2, 3, 4].map(function (i) { return $('age-' + i).value; }),
       ageJnsp: $('age-jnsp').checked,
@@ -2040,7 +2193,7 @@ function calculer(d) {
       });
     });
     if (etape === 1) majCompteur('postes', !!parChamp.postes);
-    if (etape === 2) majCompteur('ages', !!parChamp.age);
+    if (etape === 2) { majCompteur('ages', !!parChamp.age); majFemmes(); }
   }
 
   function afficherResume(erreurs) {
@@ -2107,15 +2260,32 @@ function calculer(d) {
   }
 
   /* ── Étape 2 : femmes et âge ─────────────────────────────────── */
-  function majFemmes(source) {
-    var inp = $('femmes'), rng = $('femmes-curseur'), jnsp = $('femmes-jnsp').checked;
-    if (source === 'curseur') inp.value = rng.value;
-    var n = lireEntier(inp.value);
-    if (source === 'champ' && n !== null && !isNaN(n) && n <= 100) rng.value = n;
-    inp.disabled = jnsp; rng.disabled = jnsp;
+  /* Saisie de l'utilisateur, distincte de la position affichée (état « non renseigné », case cochée) */
+  var femmesSaisie = { touche: false, valeur: 50 };
+  function femmesToucher() {
+    var c = $('femmes');
+    if (c.disabled) return;
+    femmesSaisie = { touche: true, valeur: parseInt(c.value, 10) };
+    majFemmes(); revalider(2); sauver();
+  }
+  function majFemmes() {
+    var c = $('femmes'), jnsp = $('femmes-jnsp').checked;
+    var v = jnsp ? Math.round(PARAMS.defautPartFemmes * 100) : femmesSaisie.valeur;
+    c.value = v;
+    c.disabled = jnsp;
+    c.style.setProperty('--p', v / 100);
+    var renseigne = jnsp || femmesSaisie.touche;
+    $('femmes-barre').setAttribute('data-etat', jnsp ? 'jnsp' : (femmesSaisie.touche ? 'ok' : (c.getAttribute('aria-invalid') === 'true' ? 'erreur' : 'vide')));
+    if (renseigne) {
+      $('femmes-val').textContent = tpl(T['etape2.femmes.extremite.gauche'], { pct_femmes: v });
+      $('hommes-val').textContent = tpl(T['etape2.femmes.extremite.droite'], { pct_hommes: 100 - v });
+      c.setAttribute('aria-valuetext', tpl(T['etape2.femmes.aria-valuetext'], { pct_femmes: v, pct_hommes: 100 - v }));
+    } else {
+      $('femmes-val').textContent = T['etape2.femmes.non-renseigne.lecture'];
+      $('hommes-val').textContent = T['etape2.femmes.non-renseigne.lecture'];
+      c.setAttribute('aria-valuetext', T['etape2.femmes.aria-valuetext.non-renseigne']);
+    }
     $('femmes-jnsp-actif').hidden = !jnsp;
-    var d = $('femmes-deduit');
-    d.textContent = (!jnsp && n !== null && !isNaN(n) && n <= 100) ? tpl(T['etape2.femmes.deduit'], { pct_hommes: 100 - n }) : '';
   }
   function majAges() {
     var jnsp = $('age-jnsp').checked;
@@ -2328,11 +2498,11 @@ function calculer(d) {
   }
 
   /* ── Persistance locale (sessionStorage, rien n'est envoyé) ──── */
-  var CHAMPS_SAUVES = ['secteur', 'effectif', 'pct-sedentaire', 'pct-manuel', 'pct-debout', 'pct-conduite', 'femmes', 'age-1', 'age-2', 'age-3', 'age-4', 'arrets', 'duree'];
+  var CHAMPS_SAUVES = ['secteur', 'effectif', 'pct-sedentaire', 'pct-manuel', 'pct-debout', 'pct-conduite', 'age-1', 'age-2', 'age-3', 'age-4', 'arrets', 'duree'];
   var CASES_SAUVEES = ['poste-sedentaire', 'poste-manuel', 'poste-debout', 'poste-conduite', 'femmes-jnsp', 'age-jnsp', 'signal-a', 'signal-b', 'signal-c', 'signal-d', 'prev-oui', 'prev-partiel', 'prev-non'];
   function sauver() {
     try {
-      var o = { v: {}, c: {}, etape: etat.etape, max: etat.max, egaux: etat.postesEgaux };
+      var o = { v: {}, c: {}, etape: etat.etape, max: etat.max, egaux: etat.postesEgaux, femmes: femmesSaisie };
       CHAMPS_SAUVES.forEach(function (id) { o.v[id] = $(id).value; });
       CASES_SAUVEES.forEach(function (id) { o.c[id] = $(id).checked; });
       sessionStorage.setItem(STORE, JSON.stringify(o));
@@ -2346,7 +2516,9 @@ function calculer(d) {
     CASES_SAUVEES.forEach(function (id) { $(id).checked = !!o.c[id]; });
     majPostes(false);
     etat.postesEgaux = !!o.egaux;
-    majFemmes('champ'); majAges(); majArrets(); syncChoix();
+    var fs = o.femmes;
+    if (fs && fs.touche && /^\d+$/.test(String(fs.valeur)) && fs.valeur <= 100) femmesSaisie = { touche: true, valeur: parseInt(fs.valeur, 10) };
+    majFemmes(); majAges(); majArrets(); syncChoix();
     // On ne rouvre une étape que si les précédentes sont valides.
     var d = lireDonnees(), max = 1;
     for (var i = 1; i <= 3; i++) { if (validerEtape(i, d).length) break; max = i + 1; }
@@ -2365,7 +2537,7 @@ function calculer(d) {
     try { sessionStorage.removeItem(STORE); } catch (e) {}
     CHAMPS_SAUVES.forEach(function (id) { $(id).value = ''; $(id).removeAttribute('aria-invalid'); });
     CASES_SAUVEES.forEach(function (id) { $(id).checked = false; });
-    $('femmes-curseur').value = 50;
+    femmesSaisie = { touche: false, valeur: 50 };
     document.querySelectorAll('.calc-error').forEach(function (e) { e.hidden = true; e.textContent = ''; });
     document.querySelectorAll('[aria-invalid]').forEach(function (e) { e.removeAttribute('aria-invalid'); });
     etat = { etape: 1, max: 1, tentee: {}, postesEgaux: false, touche: {}, resultat: null };
@@ -2750,8 +2922,11 @@ function calculer(d) {
   $('secteur').addEventListener('change', function () { revalider(1); sauver(); });
   $('effectif').addEventListener('input', function (e) { nettoyerEntier(e); revalider(1); majArrets(); sauver(); });
 
-  $('femmes').addEventListener('input', function (e) { nettoyerEntier(e); majFemmes('champ'); revalider(2); sauver(); });
-  $('femmes-curseur').addEventListener('input', function () { majFemmes('curseur'); revalider(2); sauver(); });
+  $('femmes').addEventListener('input', femmesToucher);
+  $('femmes').addEventListener('pointerdown', function () { setTimeout(femmesToucher, 0); });
+  $('femmes').addEventListener('keydown', function (e) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].indexOf(e.key) >= 0) setTimeout(femmesToucher, 0);
+  });
   $('femmes-jnsp').addEventListener('change', function () { majFemmes(); syncChoix(); revalider(2); sauver(); });
   [1, 2, 3, 4].forEach(function (i) {
     $('age-' + i).addEventListener('input', function (e) { nettoyerEntier(e); majCompteur('ages'); revalider(2); sauver(); });

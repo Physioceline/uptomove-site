@@ -566,3 +566,30 @@ Libellés des postes pour `{{postes_liste}}` : « Sédentaires », « Manutentio
 |---|---|
 | etape3.duree.aide | Un ordre de grandeur suffit si vous n'avez pas le chiffre exact. |
 | erreur.duree.vide | Indiquez la durée moyenne d'un arrêt, en jours. |
+
+---
+
+## Part de femmes, v2
+
+Spec : `calc-ux-ui-part-femmes-2026-10-04.md`, avec l'arbitrage Femmes à gauche, Hommes à droite. `aria-valuetext` nomme déjà les femmes en premier, il ne change pas. Ordre du bloc respecté (question, lecture, curseur, erreur, case, note de la case, note sourcée).
+
+| Id | Texte |
+|---|---|
+| etape2.femmes.label | Répartition femmes / hommes de votre effectif |
+| etape2.femmes.extremite.gauche | Femmes {{pct_femmes}} % |
+| etape2.femmes.extremite.droite | {{pct_hommes}} % Hommes |
+| etape2.femmes.non-renseigne.lecture | Femmes – % · – % Hommes (tiret demi-cadratin U+2013, pas de tiret long) |
+| etape2.femmes.non-renseigne.aide | Déplacez le curseur pour indiquer la répartition. |
+| etape2.femmes.aria-valuetext | {{pct_femmes}} % de femmes, {{pct_hommes}} % d'hommes |
+| etape2.femmes.aria-valuetext.non-renseigne | Non renseigné, déplacez le curseur |
+| etape2.femmes.jnsp | Je ne connais pas la répartition |
+| etape2.femmes.jnsp.actif | Moyenne utilisée, 47 % de femmes et 53 % d'hommes, comme parmi l'ensemble des salariés en France. |
+| etape2.femmes.note | Les femmes représentent 55 % des TMS reconnus en maladie professionnelle pour 47 % des salariés (Assurance Maladie – Risques professionnels, données 2023). |
+| erreur.femmes.vide | Déplacez le curseur ou cochez « Je ne connais pas la répartition ». |
+
+`etape2.femmes.non-renseigne.aide` : facultatif, à afficher sous la barre tant que le curseur n'est pas touché si Design lui trouve une place. Sinon, la lecture avec tirets suffit.
+
+Identifiants remplacés ou supprimés :
+- remplacés : `etape2.femmes.label`, `etape2.femmes.aide` (devient `etape2.femmes.note`, en bas du bloc), `etape2.femmes.curseur` (devient `etape2.femmes.aria-valuetext`), `etape2.femmes.jnsp.actif`, `erreur.femmes.vide` ;
+- supprimés : `etape2.femmes.deduit`, `erreur.femmes.invalide` ;
+- inchangé : `etape2.femmes.jnsp`.
